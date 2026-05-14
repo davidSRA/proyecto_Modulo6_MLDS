@@ -2,10 +2,11 @@
 
 ## Nombre del Proyecto
 
-Predicción del precio de la acción de Apple mediante Machine Learning
+Predicción del precio de la acción de Apple Inc. (AAPL) mediante aprendizaje profundo
 
 ## Objetivo del Proyecto
-Predecir de manera asertiva el precio de la acción de apple usando diversas herramientas de aprendizaje de máquina
+
+El objetivo de este proyecto es construir y comparar modelos de aprendizaje automático y aprendizaje profundo para estimar el comportamiento diario de la acción de Apple Inc. (AAPL). En lugar de predecir directamente el precio, se modela el log-retorno diario, ya que esta variable reduce la dependencia de escala y es más adecuada para trabajar con series financieras.
 
 ## Alcance del Proyecto
 
