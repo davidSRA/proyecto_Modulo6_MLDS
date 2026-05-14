@@ -1,21 +1,27 @@
-# Carga del dataset consolidado y preparado
-df = pd.read_csv('dataset.csv')
-df = df.drop(columns=['Volume'], errors='ignore')
-df['Date'] = pd.to_datetime(df['Date'])
-df = df.set_index('Date').sort_index()
+import os
+import kagglehub
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import yfinance as yf
 
-print('Dimensiones del dataset:', df.shape)
-display(df.head())
+# Descargamos el Dataset de Kaggle
+path = kagglehub.dataset_download("iamtanmayshukla/apple-inc-aapl-stock-data-1980-2024")
+df = pd.read_csv(f"{path}/aapl_us_2025.csv")
+df.index.name = "Index"
+df["Date"]=pd.to_datetime(df["Date"])
 
-features_derived = ['RSI', 'Volatility_10', 'Range', 'LogVolume', 'Gap', 'Ratio']
-features_price = ['Open', 'High', 'Low', 'Close']
-features_mixed = features_price + features_derived
+# Importamos datos de Yahoo Finanace para complementar y actualizar el dataset:
+df_now = yf.download("AAPL", start="2025-01-18",end = "2026-04-03")
+df_now.columns = df_now.columns.get_level_values(0)
+df_now.index.name = 'Index'
+df_now.reset_index()
+df_now["Date"]=pd.to_datetime(df_now.index)
 
-train = df.loc[:'2015-12-31']
-val = df.loc['2016-01-01':'2021-12-31']
-test = df.loc['2022-01-01':]
+#Unificamos los dos Datasets:
+df_total = pd.concat([df, df_now]).sort_values(by='Date')
+df_total.index = range(len(df_total))
 
-print('Tamaño de entrenamiento:', train.shape)
-print('Tamaño de validación:', val.shape)
-print('Tamaño de prueba:', test.shape)
+print(df_total.tail())
 
