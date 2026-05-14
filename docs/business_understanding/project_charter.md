@@ -5,7 +5,7 @@
 [Predicción del precio de la acción de Apple mediante Machine Learning]
 
 ## Objetivo del Proyecto
-
+jajaja
 [Predecir de manera asertiva el precio de la acción de apple usando diversas herramientas de aprendizaje de máquina]
 
 ## Alcance del Proyecto
@@ -36,24 +36,27 @@ El proyecto se enfoca en la acción AAPL y utiliza datos históricos diarios con
 
 | Etapa | Duración Estimada | Fechas |
 |------|---------|-------|
-| Entendimiento del negocio y carga de datos | 2 semanas | del 1 de mayo al 15 de mayo |
-| Preprocesamiento, análisis exploratorio | 4 semanas | del 16 de mayo al 15 de junio |
-| Modelamiento y extracción de características | 4 semanas | del 16 de junio al 15 de julio |
-| Despliegue | 2 semanas | del 16 de julio al 31 de julio |
-| Evaluación y entrega final | 3 semanas | del 1 de agosto al 21 de agosto |
-
-Hay que tener en cuenta que estas fechas son de ejemplo, estas deben ajustarse de acuerdo al proyecto.
+| Entendimiento del negocio y carga de datos | 5 dias | del 9 de mayo al 14 de mayo |
+| Preprocesamiento, análisis exploratorio | 5 dias | del 15 de mayo al 20 de mayo |
+| Modelamiento y extracción de características | 5 dias | del 20 de mayo al 5 de junio |
+| Despliegue | 1 semanas | del 5 de junio al 10 de junio |
+| Evaluación y entrega final | 1 dia | del 10 junio 11 de junio |
 
 ## Equipo del Proyecto
 
-- [Nombre y cargo del líder del proyecto]
-- [Nombre y cargo de los miembros del equipo]
+- [Santiago Rodriguez Cargo: Director del proyecto]
+- [Oscar Fabian Alfonso Cargo: Ingenero de datos]
+- [Brayan Camargo Cargo: Cientifico de Datos]
 
 ## Presupuesto
 
-[Descripción del presupuesto asignado al proyecto]
+[El proyecto tiene caracter academico, razon por la cual el costo del mismo es de $ 0 pesos COP. Sin embargo, cualquier costo relacionado con creditos, capacidad de procesamiento y/o almacenamiento, se entiende asumido por la UNAL]
 
 ## Stakeholders
+Los beneficiarios directos son los inversionistas minoristas principiantes que aún no dominan las
+bases del análisis bursátil y quieren respaldo cuantitativo. También puede interesar a inversores más
+experimentados que busquen comparar su criterio con una predicción automática. El proyecto se
+enfocará en quienes siguen la acción de Apple, pero el pipeline final podrá adaptarse a otras acciones.
 
 - [Nombre y cargo de los stakeholders del proyecto]
 - [Descripción de la relación con los stakeholders]
