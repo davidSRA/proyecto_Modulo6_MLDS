@@ -2,11 +2,11 @@
 
 ## Nombre del Proyecto
 
-[Nombre del proyecto aquí]   Test
+[Predicción del precio de la acción de Apple mediante Machine Learning]
 
 ## Objetivo del Proyecto
 
-[Descripción breve del objetivo del proyecto y por qué es importante]
+[Predecir de manera asertiva el precio de la acción de apple usando diversas herramientas de aprendizaje de máquina]
 
 ## Alcance del Proyecto
 
