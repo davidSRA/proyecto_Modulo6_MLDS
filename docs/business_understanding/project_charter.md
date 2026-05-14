@@ -2,23 +2,22 @@
 
 ## Nombre del Proyecto
 
-[Predicción del precio de la acción de Apple mediante Machine Learning]
+Predicción del precio de la acción de Apple mediante Machine Learning
 
 ## Objetivo del Proyecto
-jajaja
-[Predecir de manera asertiva el precio de la acción de apple usando diversas herramientas de aprendizaje de máquina]
+Predecir de manera asertiva el precio de la acción de apple usando diversas herramientas de aprendizaje de máquina
 
 ## Alcance del Proyecto
 
 ### Incluye:
 
-- [Descripción de los datos disponibles]
-- [Descripción de los resultados esperados]
-- [Criterios de éxito del proyecto]
+- Descripción de los datos: Los datos contienen la información histórica del precio de la acción de Apple, entre ellos precio de apertura, cierre, máximo y mínimo.
+- Descripción de los resultados esperados: Un modelo de aprendizaje de máquina que permita predecir el movimiento del precio de la acción de manera eficiente.
+- Criterios de éxito del proyecto: 1) Cumplir los estándares de metodología de Team Data Science Project para el desarrollo de proyectos de ML. 2) Que el modelo funcione de manera efectiva para la predicción del precio de la acción de apple.
 
 ### Excluye:
 
-- [Descripción de lo que no está incluido en el proyecto]
+- No incluye datos diferentes al movimiento del precio y volumen de la acción tales como noticias o profundidad de mercado. 
 
 ## Metodología
 
