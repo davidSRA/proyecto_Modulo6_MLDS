@@ -22,13 +22,21 @@
 
 ## Metodología
 
-[Descripción breve de la metodología que se utilizará para llevar a cabo el proyecto]
+El proyecto se enfoca en la acción AAPL y utiliza datos históricos diarios con precios de apertura, máximo, mínimo, cierre, volumen e indicadores derivados. El flujo metodológico es el siguiente:
+
+1. Consolidar y preparar el conjunto de datos histórico.
+2. Transformar la serie de precios en log-retornos diarios.
+3. Construir variables derivadas como RSI, volatilidad, rango diario, volumen logarítmico, gap y ratio.
+4. Crear ventanas temporales de 20 días para capturar dependencias recientes.
+5. Entrenar y comparar modelos MLP, Random Forest y tres variantes LSTM.
+6. Reconstruir precios a partir de los log-retornos predichos.
+7. Usar el mejor modelo para pronosticar los próximos 20 días y estimar una banda de confianza.
 
 ## Cronograma
 
 | Etapa | Duración Estimada | Fechas |
 |------|---------|-------|
-| Entendimiento del negocio y carga de datos | 2 semanas | del 1 de mayo al 15 de mayo |
+| Entendimiento del negocio y carga de datos | 3 dias | del 13 de mayo al 14 de mayo |
 | Preprocesamiento, análisis exploratorio | 4 semanas | del 16 de mayo al 15 de junio |
 | Modelamiento y extracción de características | 4 semanas | del 16 de junio al 15 de julio |
 | Despliegue | 2 semanas | del 16 de julio al 31 de julio |
