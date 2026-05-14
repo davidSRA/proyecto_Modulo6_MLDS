@@ -2,7 +2,7 @@
 
 ## Nombre del Proyecto
 
-[Nombre del proyecto aquí]
+[Nombre del proyecto aquí]   Test
 
 ## Objetivo del Proyecto
 
