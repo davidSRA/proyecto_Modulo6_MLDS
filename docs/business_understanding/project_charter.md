@@ -58,12 +58,22 @@ bases del análisis bursátil y quieren respaldo cuantitativo. También puede in
 experimentados que busquen comparar su criterio con una predicción automática. El proyecto se
 enfocará en quienes siguen la acción de Apple, pero el pipeline final podrá adaptarse a otras acciones.
 
-- [Nombre y cargo de los stakeholders del proyecto]
-- [Descripción de la relación con los stakeholders]
-- [Expectativas de los stakeholders]
+- [Externos: Inversionas que quieran acciones de APPLE. Cargo: ]
+- [Cargo/Rol: Usuarios finales / inversionistas individuales]
+- 
+Obtener predicciones confiables sobre el comportamiento futuro de la acción.
+Contar con una herramienta fácil de interpretar, incluso para usuarios sin conocimientos avanzados en finanzas.
+Reducir el riesgo asociado a decisiones de inversión mediante respaldo cuantitativo.
+Tener acceso a resultados actualizados y oportunos que permitan reaccionar al mercado.
+Posibilidad de extender el modelo a otras acciones en el futuro, además de Apple.
 
-## Aprobaciones
+## Aprobaciones Nombre y cargo del aprobador del proyecto:
+Dr. Pepito Perez fulanito
+Director Bolsa de Valores de colombia
+Firma del aprobador:
+Andrés Restrepo Montoya
+Fecha de aprobación:
+13/05/2026
 
-- [Nombre y cargo del aprobador del proyecto]
-- [Firma del aprobador]
-- [Fecha de aprobación]
+
+
