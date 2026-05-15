@@ -2,24 +2,39 @@
 
 ## Origen de los datos
 
-- [ ] Especificar la fuente de los datos y la forma en que se obtuvieron. 
+- [ ] Dataset histórico de acciones de Apple Inc. (AAPL) obtenido desde Kaggle
+- [ ] Datos financieros actualizados obtenidos desde Yahoo Finance mediante la librería yfinance
 
 ## Especificación de los scripts para la carga de datos
 
-- [ ] Especificar los scripts utilizados para la carga de los datos. 
+- [ ] l siguiente script se utilizó para la carga y consolidación de los datos:
+- [ ] # Descarga del dataset desde Kaggle path = kagglehub.dataset_download("iamtanmayshukla/apple-inc-aapl-stock-data-1980-2024")
+- [ ] df = pd.read_csv(f"{path}/aapl_us_2025.csv")
 
 ## Referencias a rutas o bases de datos origen y destino
 
-- [ ] Especificar las rutas o bases de datos de origen y destino para los datos.
+- [ ] path = kagglehub.dataset_download("iamtanmayshukla/apple-inc-aapl-stock-data-1980-2024")
+
 
 ### Rutas de origen de datos
 
-- [ ] Especificar la ubicación de los archivos de origen de los datos.
-- [ ] Especificar la estructura de los archivos de origen de los datos.
+- [ ] path = kagglehub.dataset_download("iamtanmayshukla/apple-inc-aapl-stock-data-1980-2024")
+- [ ] f"{path}/aapl_us_2025.csv"
 - [ ] Describir los procedimientos de transformación y limpieza de los datos.
 
 ### Base de datos de destino
 
-- [ ] Especificar la base de datos de destino para los datos.
-- [ ] Especificar la estructura de la base de datos de destino.
-- [ ] Describir los procedimientos de carga y transformación de los datos en la base de datos de destino.
+- [ ] Data set final = df_total
+- [ ] Campo	Tipo de dato : Date	datetime64
+- [ ] Open	float64
+- [ ] High	float64
+- [ ] Low	float64
+- [ ] Close	float64
+- [ ] Adj Close	float64
+- [ ] Volume	int64
+- [ ] el proceso final consistió en:
+
+- [ ] Integración de múltiples fuentes de datos.
+- [ ] Estandarización de formatos.
+- [ ] Consolidación en un único DataFrame (df_total).
+- [ ] Preparación de los datos para análisis exploratorio y modelado financiero.
