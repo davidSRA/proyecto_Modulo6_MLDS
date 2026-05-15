@@ -28,7 +28,7 @@ El proyecto se enfoca en la acción AAPL y utiliza datos históricos diarios con
 2. Transformar la serie de precios en log-retornos diarios.
 3. Construir variables derivadas como RSI, volatilidad, rango diario, volumen logarítmico, gap y ratio.
 4. Crear ventanas temporales de 20 días para capturar dependencias recientes.
-5. Entrenar y comparar modelos MLP, Random Forest y tres variantes LSTM.
+5. Entrenar y comparar modelos MLP, Random Forest y LSTM, hacer exploracion de hiperparámetros usando librerias como Optuna.
 6. Reconstruir precios a partir de los log-retornos predichos.
 7. Usar el mejor modelo para pronosticar los próximos 20 días y estimar una banda de confianza.
 
