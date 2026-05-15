@@ -2,7 +2,10 @@
 
 ## Base de datos 1
 
-**Agregar una descripción de la tabla o fuente de datos.
+**Este dataset contiene información histórica de las acciones de Apple Inc. (AAPL),
+incluyendo precios de apertura, cierre, máximos, mínimos y volumen de transacciones.
+Los datos provienen de Kaggle y fueron complementados con información actualizada
+obtenida desde Yahoo Finance mediante la librería yfinance.
 
 | Variable | Descripción | Tipo de dato | Rango/Valores posibles | Fuente de datos |
 | --- | --- | --- | --- | --- |
