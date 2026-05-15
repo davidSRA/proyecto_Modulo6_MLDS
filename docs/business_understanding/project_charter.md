@@ -58,9 +58,14 @@ bases del análisis bursátil y quieren respaldo cuantitativo. También puede in
 experimentados que busquen comparar su criterio con una predicción automática. El proyecto se
 enfocará en quienes siguen la acción de Apple, pero el pipeline final podrá adaptarse a otras acciones.
 
-- [Externos: Inversionas que quieran acciones de APPLE. Cargo: ]
-- [Cargo/Rol: Usuarios finales / inversionistas individuales]
-- 
+| Grupo | Interesado / Rol | Expectativas y Necesidades Clave |
+| :--- | :--- | :--- |
+| **Interno** | Equipo del Proyecto (Director, Ing. Datos, Data Scientist) | Ejecución técnica bajo metodología TDSP y optimización de métricas de error. |
+| **Externo** | Inversionistas Minoristas | Herramienta cuantitativa fácil de interpretar para apoyar decisiones de inversión. |
+| **Externo** | Inversionistas Experimentados | Benchmark cuantitativo para contrastar con análisis técnico tradicional. |
+| **Académico** | Evaluadores UNAL | Rigurosidad estadística y correcta implementación de arquitecturas Deep Learning y despliegue de los modelos. |
+
+
 Obtener predicciones confiables sobre el comportamiento futuro de la acción.
 Contar con una herramienta fácil de interpretar, incluso para usuarios sin conocimientos avanzados en finanzas.
 Reducir el riesgo asociado a decisiones de inversión mediante respaldo cuantitativo.
@@ -68,12 +73,12 @@ Tener acceso a resultados actualizados y oportunos que permitan reaccionar al me
 Posibilidad de extender el modelo a otras acciones en el futuro, además de Apple.
 
 ## Aprobaciones Nombre y cargo del aprobador del proyecto:
-Dr. Pepito Perez fulanito
-Director Bolsa de Valores de colombia
-Firma del aprobador:
-Andrés Restrepo Montoya
-Fecha de aprobación:
-13/05/2026
+
+| Responsabilidad | Nombre y Cargo | Firma | Fecha |
+| :--- | :--- | :--- | :--- |
+| **Director Técnico** | **Santiago Rodriguez** <br> Director del Proyecto | ________________ | 13/05/2026 |
+| **Ingeniero Responsable** | **Oscar Fabián Alfonso** <br> Ingeniero de Datos | ________________ | 13/05/2026 |
+| **Científico Responsable** | **Brayan Arturo Camargo** <br> Científico de Datos | ________________ | 13/05/2026 |
 
 
 
