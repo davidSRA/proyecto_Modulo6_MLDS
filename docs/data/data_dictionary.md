@@ -2,9 +2,9 @@
 
 ## Base de datos 1
 
-**Este dataset contiene información histórica de las acciones de Apple Inc. (AAPL),
+Este dataset contiene información histórica de las acciones de **Apple Inc. (AAPL)**,
 incluyendo precios de apertura, cierre, máximos, mínimos y volumen de transacciones.
-Los datos provienen de Kaggle y fueron complementados con información actualizada
+Los datos provienen de **Kaggle** y fueron complementados con información actualizada
 obtenida desde Yahoo Finance mediante la librería yfinance.
 
 | Variable | Descripción | Tipo de dato | Rango/Valores posibles | Fuente de datos |
@@ -17,12 +17,6 @@ obtenida desde Yahoo Finance mediante la librería yfinance.
 | Adj Close | Precio de cierre ajustado por dividendos  | float64 | Rango/Valores posibles | Kaggle / Yahoo Finance |
 | Volume | Cantidad de acciones negociadas durante el día. | 2838199.8879233 a 8788462909.8256 | Rango/Valores posibles | Kaggle / Yahoo Finance |
 
-
-- **Variable**: nombre de la variable.
-- **Descripción**: breve descripción de la variable.
-- **Tipo de dato**: tipo de dato que contiene la variable.
-- **Rango/Valores posibles**: rango o valores que puede tomar la variable.
-- **Fuente de datos**: fuente de los datos de la variable.
 
 ## Base de datos 2
 
