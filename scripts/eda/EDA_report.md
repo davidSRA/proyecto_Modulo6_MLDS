@@ -20,18 +20,18 @@ Una vez eliminados los valores nulos, se construyó un histograma de la variable
 ### Boxplot
 El diagrama de caja permite identificar la dispersión de los datos y posibles valores atípicos en la variable objetivo.
 
-![Boxplot LogReturn](images/boxplot.png)
+![Boxplot LogReturn](boxplot.png)
 
 ---
 
 ### Histograma básico
 El histograma permite observar la distribución general de la variable `LogReturn`.
 
-![Histograma básico](images/hist_basico.png)
+![Histograma básico](hist_basico.png)
 
 ---
 
 ### Histograma con curva KDE
 El histograma con estimación de densidad (KDE) permite visualizar con mayor detalle la forma de la distribución y su concentración.
 
-![Histograma KDE](images/hist_kde.png)
+![Histograma KDE](hist_kde.png)
