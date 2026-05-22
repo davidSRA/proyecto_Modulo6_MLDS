@@ -1,5 +1,5 @@
 # Analisis Exploratorio de datos
-
+<div align="justify">
 Con el fin de complementar y actualizar el conjunto de datos original, se descargó información financiera adicional de de as acciones de APPEL (AAPL) desde a partir de la la librería `yfinance`, para el periodo comprendido entre el 18 de enero de 2025 y el 3 de abril de 2026.
 
 Después de integrar la información, el conjunto de datos final contiene **10.473 registros**, correspondientes a **datos estructurados de series de tiempo financieras**, con un tamaño aproximado de **0.47 MB**.
@@ -35,3 +35,4 @@ El histograma permite observar la distribución general de la variable `LogRetur
 El histograma con estimación No parametrica de la función de densidad (KDE), esta estimación permite visualizar con mayor detalle la forma de la distribución y su concentración, lo cual confirma lo dicho anteriormente respecto de la distribución leptocurtica de los datos.
 
 ![Histograma KDE](hist_kde.png)
+</div>
