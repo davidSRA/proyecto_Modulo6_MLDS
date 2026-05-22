@@ -1,5 +1,6 @@
-## Preprocesamiento y análisis de relaciones entre variables
 
+## Preprocesamiento y análisis de relaciones entre variables
+<div align="justify">
 Durante la etapa de preprocesamiento se realizaron transformaciones orientadas a mejorar la capacidad predictiva del modelo y a extraer información temporal relevante del comportamiento del activo financiero.
 
 Inicialmente, se verificó la consistencia de las variables numéricas, validando tipos de datos, ausencia de duplicados y tratamiento de valores faltantes.Para nuestro caso particular, no habian valores faltantes, salvo aquellos que se pierden por el calculo de los log retornos calculados, definidos mediante la siguiente expresion: 
@@ -110,3 +111,4 @@ A partir de este proceso se concluye que:
 - No se identificaron problemas críticos de calidad de datos.
 - Existen relaciones significativas entre algunas variables explicativas y la variable objetivo, como por ejemplo: RATIO y GAP.
 - El conjunto de datos quedó preparado para la fase de entrenamiento y validación del modelo predictivo.
+</div>
