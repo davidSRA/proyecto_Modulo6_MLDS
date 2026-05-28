@@ -7,62 +7,51 @@ from data_acquisition.main import obtener_datos
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-def preprocesar_datos(df):
-    # Calculamos la media movil simple (SMA) para ventanas de 10
-    df["SMA_10"] = df["Close"].rolling(window=10).mean()
+def construir_targets(df):
+    """
+    Target_1d:    retorno acumulado mañana         → señal inmediata
+    Target_5d:    retorno acumulado próxima semana  → horizonte principal
+    Target_Vol5d: volatilidad de esos 5 días        → base del IC
+    """
+    # Retorno acumulado a 1 y 5 días
+    for h in [1, 5]:
+        df[f"Target_{h}d"] = sum(
+            df["LogReturn"].shift(-i) for i in range(1, h + 1)
+        )
 
-    # Calculamos el retorno logaritmico
+    # Volatilidad realizada de los próximos 5 días
+    df["Target_Vol5d"] = (
+        pd.concat([df["LogReturn"].shift(-i) for i in range(1, 6)], axis=1)
+        .std(axis=1)
+    )
+    return df
+def preprocesar_datos(df):
+    """
+    Solo limpieza y transformaciones base.
+    Conserva OHLCV para que feature_extraction pueda usarlos.
+    """
+    df = df.copy()
+
+    # 1. Eliminar duplicados y ordenar por fecha
+    df = df[~df.index.duplicated(keep="first")]
+    df = df.sort_index()
+
+    # 2. Transformaciones base (escala logarítmica)
+
+    df["LogVolume"] = np.log(df["Volume"])
     df["LogReturn"] = np.log(df["Close"] / df["Close"].shift(1))
 
-    # Calculamos el indice de fuerza relativa (RSI)
-    delta = df["Close"].diff()
-    gain = delta.where(delta > 0, 0)
-    loss = -delta.where(delta < 0, 0)
+    # 3. Variable objetivo: retorno del día SIGUIENTE
+    #    El modelo predice hacia adelante, no el día actual
+    df = construir_targets(df)
 
-    n = 14
-    avg_gain = gain.ewm(alpha=1/n, adjust=False).mean()
-    avg_loss = loss.ewm(alpha=1/n, adjust=False).mean()
-    rs = avg_gain / avg_loss
-    df["RSI"] = 100 - (100 / (1 + rs))
-
-    # Volatilidad
-    df["Volatility_10"] = df["Close"].rolling(window=10).std()
-
-    # Rango del precio
-    df["Range"] = (df["High"] - df["Low"]) / df["Close"]
-
-    # Valor logaritmico del volumen
-    df["LogVolume"] = np.log(df["Volume"])
-
-    # Gap Overnight
-    df["Gap"] = np.log(df["Open"]) - np.log(df["Close"].shift(1))
-
-    # Ratio
-    df["Ratio"] = np.log(df["Close"] / df["SMA_10"])
-
-    # Eliminamos columnas que no interesan
-    df = df.drop(columns=["SMA_10", "Volume", "Open", "Close", "High", "Low"])
+    # 4. Eliminar la última fila (Target = NaN por el shift)
     df = df.dropna()
 
-    cols = ['Ratio', 'Gap', 'LogVolume', 'LogReturn',
-            'RSI', 'Volatility_10', 'Range']
-    corr = df[cols].corr()
+    return df   
 
-    # ── Matriz de correlación ──────────────────────────────────────────
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(corr, annot=True, fmt=".2f", cmap='coolwarm')
-    plt.title("Correlation Matrix")
-    plt.tight_layout()
-    plt.savefig(os.path.join(BASE_DIR, "correlacion.png"))
-    plt.close()
-
-    # ── Pairplot ───────────────────────────────────────────────────────
-    fig = sns.pairplot(df[cols])
-    fig.savefig(os.path.join(BASE_DIR, "pairplot.png"))
-    plt.close()
-
-    return df
 if __name__ == "__main__":
     df = obtener_datos()
     datos_preprocesados = preprocesar_datos(df)
