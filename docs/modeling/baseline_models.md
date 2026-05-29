@@ -38,6 +38,12 @@ $$LogReturn_t =
 \frac{P_t}{P_{t-1}}
 \right)$$
 
+donde,
+
+$P_t$ es el precio en el tiempo actual.
+$P_{t-1}$ es el precio del período anterior.
+$\ln$ corresponde al logaritmo natural.
+
 Posteriormente, a partur de esta variable, se construyeron otras variables variables de entrada, las cuales fueron construidas mediante técnicas conocidas del analisis de series de datos temporales para el suavizado de las series como, los promedios moviles, y sus diferentes versiones. En general las medias moviles, permiten sustraer o eliminar las variabilidad de la serie, para volverla una serie estacional y eliminar su volatilidad. Los indicadores calculados a partir de los log retornos son los siguientes:.
 
 **Variables derivadas de los log retornos**
