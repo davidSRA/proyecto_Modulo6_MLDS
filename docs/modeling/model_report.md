@@ -15,81 +15,72 @@ Parámetros de entrenamiento, Configuración temporal de series financieras. La 
 ## Descripción del Problema
 <div align="justify">
 
-El objetivo principal del proyecto consiste en predecir el comportamiento futuro de variables financieras a partir de información histórica del mercado.
+El objetivo principal del proyecto consiste en predecir el comportamiento futuro de variables: **Retorno esperado a 1 día (Target_1d)**
+y **Retorno esperado a 5 días (Target_5d**, variables financieras a partir de información histórica del mercado. Los mercados de los precios de las acciones de APPLE generalmente presentan caracteristicas como:
 
-Los mercados financieros presentan características complejas como:
+1. Alta volatilidad
+2. Dependencia temporal
+3. No estacionariedad
+4. comportamientos aleatorios (Ruido blanco).
 
-Alta volatilidad
-Dependencia temporal
-No estacionariedad
-Ruido estadístico
-Relaciones no lineales
+Debido a estas caracteristicas que asu vez pueden presentar aalgunos invocnvenientes desde el punto de vista teorico, los modelos tradicionales como los modelos ARIMA, SARIMA, GARCH, EGARH presentan limitaciones importantes en el modelamiento. Por lo anterior y dado que el proyecto se desarrolla bajo el concepto del aprendizaje automatico, se usaran los modelos de esta linea del conocimiento para entrenar y utilizar los modelos para las siguientes variables:
 
-Debido a estas propiedades, los modelos tradicionales presentan limitaciones importantes para capturar patrones predictivos robustos.
-
-El problema abordado corresponde a un problema de regresión multisalida (multi-output regression), donde se busca estimar simultáneamente:
-
-Retorno esperado a 1 día (Target_1d)
-Retorno esperado a 5 días (Target_5d)
-Volatilidad futura a 5 días (Target_Vol5d)
+1. Retorno esperado a 1 día (Target_1d)
+2. Retorno esperado a 5 días (Target_5d)
+3. Volatilidad futura a 5 días (Target_Vol5d)
 
 **Objetivos del modelo**
 *Objetivo general*
 
-Desarrollar un sistema predictivo robusto para modelar retornos financieros utilizando técnicas modernas de inteligencia artificial y optimización automática.
+Desarrollar un proyecto de predicción que permita modelar los log retornos retornos financieros de las acciones de APPLE utilizando técnicas modernas de inteligencia artificial y optimización automática.
 
-Objetivos específicos
-Construir variables derivadas mediante feature engineering financiero.
-Comparar modelos de árboles, redes densas y redes recurrentes.
-Optimizar automáticamente hiperparámetros mediante Optuna.
-Minimizar el error de predicción utilizando validación temporal.
+*Objetivos específicos*
+* Construir variables derivadas mediante feature engineering financiero.
+* Comparar modelos de árboles, redes densas y redes recurrentes.
+* Optimizar automáticamente hiperparámetros mediante Optuna.
+* Minimizar el error de predicción utilizando validación temporal.
 </div>
 
 ## Descripción del Modelo
 <div align="justify">
 
-XGBoost
+Como se menciono anteriormente, los tres modelos utilizados son:
 
-Modelo basado en gradient boosting sobre árboles de decisión.
+1.) XGBoost: Modelo basado en gradient boosting sobre árboles de decisión.
 
-Hiperparámetros optimizados
-n_estimators
-max_depth
-learning_rate
-subsample
-colsample_bytree
+donde se optimizaron los Hiperparámetros:
+- n_estimators
+- max_depth
+- learning_rate
+- subsample
+- colsample_bytree
 
-Además:
+2.) MLP (Multi Layer Perceptron): Red neuronal densa completamente conectada.
 
-ventanas rolling
-número máximo de lags
-MLP (Multi Layer Perceptron)
-
-Red neuronal densa completamente conectada.
-
-Componentes optimizados
-Número de capas
-Número de neuronas
-Dropout
-Learning rate
-Batch size
+con los siguientes componentes optimizados
+- Número de capas
+- Número de neuronas
+- Dropout
+- Learning rate
+- Batch size
 
 Incluye:
 
 Escalamiento mediante StandardScaler
 EarlyStopping
 Validación temporal
-LSTM
 
-Red neuronal recurrente especializada en series de tiempo.
 
-Hiperparámetros optimizados
-Número de timesteps
-Número de capas LSTM
-Unidades ocultas
-Dropout
-Learning rate
-Batch size
+3.)  LSTM: Red neuronal recurrente especializada en series de tiempo.
+
+la cual incluye los siguients Hiperparámetros optimizados:
+
+- Número de timesteps
+- Número de capas LSTM
+- Unidades ocultas
+- Dropout
+- Learning rate
+- Batch size
 
 Las secuencias temporales fueron construidas dinámicamente dentro de cada fold para evitar filtración temporal.
 
@@ -97,39 +88,22 @@ Optimización de hiperparámetros
 
 La optimización fue realizada utilizando Optuna.
 
-Estrategia utilizada
-Algoritmo TPE
+dentro de la configuración de los parametros a utilizar:
 
-Tree-structured Parzen Estimator.
+**Algoritmo TPE**: Tree-structured Parzen Estimator, la cual permite realizar búsqueda bayesiana eficiente sobre espacios complejos de hiperparámetros.
 
-Permite realizar búsqueda bayesiana eficiente sobre espacios complejos de hiperparámetros.
-
-Pruning
-
-Se utilizó:
-
-MedianPruner
-
-Para eliminar trials con desempeño inferior durante el entrenamiento.
-
-Esto permitió reducir significativamente el costo computacional.
+**Pruning** : Se utilizó: MedianPruner Para eliminar trials con desempeño inferior durante el entrenamiento. Esto permitió reducir significativamente el costo computacional.
 </div>
 
 ## Evaluación del Modelo
 <div align="justify">
 
-Estrategia de validación
-Se utilizó: **TimeSeriesSplit(n_splits=5)**
+  Estrategia de validación
+Se utilizó: **TimeSeriesSplit(n_splits=5)**: Esta metodología preserva la estructura temporal de los datos y evita utilizar información futura durante entrenamiento.
 
-Esta metodología preserva la estructura temporal de los datos y evita utilizar información futura durante entrenamiento.
+**Métricas de evaluación**: MSE (Mean Squared Error), la cual es una Métrica principal utilizada para optimización y Penaliza fuertemente errores grandes, su formula es:
 
-**Métricas de evaluación**
-MSE (Mean Squared Error)
-
-Métrica principal utilizada para optimización.
 **$MSE=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2$**
-
-Penaliza fuertemente errores grandes.
 
 | Modelo | MSE Promedio | Desempeño |
 |---|---|---| 
@@ -139,16 +113,9 @@ Penaliza fuertemente errores grandes.
 
 El modelo MLP obtuvo el menor valor de MSE, alcanzando un error promedio de: $$ MSE_{MLP} = 0.001491 $$ lo que indica una mayor capacidad para capturar el comportamiento de la serie  financiera construida. El modelo LSTM presentó un desempeño muy cercano al MLP: $$ MSE_{LSTM} = 0.001506 $$ demostrando una adecuada capacidad para modelar dependencias temporales. Finalmente, XGBoost obtuvo: $$ MSE_{XGBoost} = 0.001690 $$
 
-Los mejores hiperparámetros encontrados fueron almacenados automáticamente en:
-
-mejores_params.csv
-
-Este archivo contiene:
-
-Modelo
-Mejor MSE
-Configuración óptima de hiperparámetros
-
+**Guardado de los datos**
+Los mejores hiperparámetros encontrados fueron almacenados automáticamente en: *mejores_params.csv*. 
+Este archivo contiene: Modelo, Mejor MSE y la configuración óptima de hiperparámetros
 </div>
 
 ## Conclusiones y Recomendaciones
