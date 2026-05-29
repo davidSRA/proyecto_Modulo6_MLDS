@@ -17,6 +17,7 @@ El pipeline implementado incluye:
 ## Descripción del modelo
 
 <div align="justify">
+   
 Los modelos considerados para el analisis de las series financieras, y que se consideran dentro de la linea base incluyen:
 
 1. Redes neuronales MLP
@@ -28,14 +29,22 @@ Los modelos considerados para el analisis de las series financieras, y que se co
 
 ## Variables de entrada
 <div align="justify">
-Las variables de entrada fueron construidas mediante técnicas conocidas del analisis de series de datos temporales para el suavizado de las series como, los promedios moviles, y sus diferentes versiones. En general las medias moviles, permiten sustraer o eliminar las variabilidad de la serie, para volverla una serie estacional y eliminar su volatilidad. Los indicadores calculados a partir de los log retornos son los siguientes:
-Las variables de entrada fueron construidas mediante técnicas de ingeniería de características sobre series de tiempo financieras.
+
+La principal variable de entrada es el precio de las acciones de APPLE.
+Posteriormente, esta variable fue calculada los log retornos de acuerdo con la siguiente formula: 
+
+$$LogReturn_t =
+\ln\left(
+\frac{P_t}{P_{t-1}}
+\right)$$
+
+Posteriormente, a partur de esta variable, se construyeron otras variables variables de entrada, las cuales fueron construidas mediante técnicas conocidas del analisis de series de datos temporales para el suavizado de las series como, los promedios moviles, y sus diferentes versiones. En general las medias moviles, permiten sustraer o eliminar las variabilidad de la serie, para volverla una serie estacional y eliminar su volatilidad. Los indicadores calculados a partir de los log retornos son los siguientes:.
 
 **Variables derivadas de los log retornos**
 1. MACD (Moving Average Convergence Divergence)
 2. MACD
 3. MACD_Signal
-4 MACD_Hist
+4. MACD_Hist
 
 **Elementos que capturan momentum y cambios de tendencia mediante medias móviles exponenciales.**
 1. Bandas de Bollinger
@@ -52,7 +61,6 @@ Las variables de entrada fueron construidas mediante técnicas de ingeniería de
 1. Oscilador Estocástico
 2. Stoch_K
 3. Stoch_D
-
 
 </div>
 
@@ -72,7 +80,8 @@ Target_1d: Es el retorno esperado a 1 día.
 Target_5d: Es el retorno acumulado esperado a 5 días.
 Target_Vol5d: Es la volatilidad futura esperada en 5 días.
 
-El principal objetivo del modelo corresponde al modelamiento y predicción de la variable de los retornos Target_5d.
+El principal objetivo del modelo corresponde al modelamiento y predicción de la variable de los retornos: Target_1d y Target_5d.
+
 </div>
 
 
@@ -88,7 +97,6 @@ Dentro del listado de las Métricas de evaluación mas utilizadas y teniendo en 
 
 3. $R^2$ (Coeficiente de determinación): Indica la proporción de variabilidad explicada por el modelo.
 
-4. Correlación de Pearson: Evalúa la relación lineal entre predicciones y valores observados.
 </div>
 
 
@@ -96,6 +104,9 @@ Dentro del listado de las Métricas de evaluación mas utilizadas y teniendo en 
 <div align="justify">
    
 Tabla que muestra los resultados de evaluación del modelo baseline, incluyendo las métricas de evaluación.
+
+
+
 </div>
 
 
