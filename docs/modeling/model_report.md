@@ -2,24 +2,14 @@
 
 <div align="justify">
 
-  El presente documento describe el desarrollo y evaluación del modelo final para predicción de variables financieras utilizando técnicas avanzadas de machine learning, deep learning y optimización bayesiana de hiperparámetros.
+El presente documento describe el desarrollo y evaluación del modelo final para predicción de variables financieras utilizando técnicas avanzadas de machine learning, deep learning y optimización de hiperparámetros. Dentro de la funcion principal *main* se han implementado tres modelo de machine learning para ajustar:
 
-El sistema implementado compara tres enfoques principales:
+1. XGBoost
+2. Redes neuronales densas (MLP)
+3. Redes recurrentes LSTM
 
-XGBoost
-Redes neuronales densas (MLP)
-Redes recurrentes LSTM
-
-La optimización de hiperparámetros fue realizada utilizando Optuna, permitiendo optimizar simultáneamente:
-
-Arquitectura de modelos
-Parámetros de entrenamiento
-Técnicas de feature engineering
-Configuración temporal de series financieras
-
-La evaluación se realizó mediante validación cruzada temporal (TimeSeriesSplit) utilizando 5 folds para evitar filtración de información futura (data leakage).
-
-La métrica principal utilizada fue el error cuadrático medio (MSE)
+La optimización de hiperparámetros fue realizada utilizando Optuna, permitiendo optimizar simultáneamente la Arquitectura de modelos, 
+Parámetros de entrenamiento, Configuración temporal de series financieras. La evaluación se realizó mediante validación cruzada temporal (TimeSeriesSplit) utilizando 5 folds para evitar filtración de información futura (data leakage). La métrica principal utilizada fue el error cuadrático medio (MSE)
 </div>
 
 ## Descripción del Problema
