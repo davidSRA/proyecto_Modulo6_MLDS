@@ -1,9 +1,8 @@
 # Reporte del Modelo Final
 
 <div align="justify">
-## Resumen Ejecutivo
 
-El presente documento describe el desarrollo y evaluación del modelo final para predicción de variables financieras utilizando técnicas avanzadas de machine learning, deep learning y optimización bayesiana de hiperparámetros.
+  El presente documento describe el desarrollo y evaluación del modelo final para predicción de variables financieras utilizando técnicas avanzadas de machine learning, deep learning y optimización bayesiana de hiperparámetros.
 
 El sistema implementado compara tres enfoques principales:
 
