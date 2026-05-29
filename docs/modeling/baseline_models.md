@@ -87,23 +87,34 @@ El principal objetivo del modelo corresponde al modelamiento y predicción de la
 
 ## Evaluación del modelo
 <div align="justify">
-### Métricas de evaluación
 
-Dentro del listado de las Métricas de evaluación mas utilizadas y teniendo en cuenta que los datos de este proyecto aplicado son de tipo continuo, las métricas consideradas para evaluar el desempeño del modelo son las siguienets:
+   **Métricas de evaluación**: 
 
-1. RMSE (Root Mean Squared Error): Mide el error cuadrático promedio entre predicciones y valores reales.
+1. MSE (Mean Squared Error), la cual es una Métrica principal utilizada para optimización y Penaliza fuertemente errores grandes, su formula es:
 
-2. MAE (Mean Absolute Error): Mide el error absoluto promedio.
+**$$MSE=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2$$**
 
-3. $R^2$ (Coeficiente de determinación): Indica la proporción de variabilidad explicada por el modelo.
+2. Coeficiente de Determinación ($R^2$): El coeficiente de determinación se calcula como: 
+
+**$$ R^2 = 1 - \frac{\sum (y_i-\hat y_i)^2}{\sum (y_i-\bar y)^2} $$** 
+
+Valores cercanos a 1 indican mejor ajuste del modelo.
+
 
 </div>
 
 
 ### Resultados de evaluación
 <div align="justify">
-   
-Tabla que muestra los resultados de evaluación del modelo baseline, incluyendo las métricas de evaluación.
+
+| Modelo | MSE | MAE | $R^2$ |
+|---|---|---|---| 
+| XGBoost | 0.000698 | 0.016723 | 0.113560 | 
+| MLP | 0.000754 | 0.018160 | -0.139903 | 
+| LSTM | 0.000772 | 0.018159 | -0.112977 |
+
+El modelo MLP obtuvo el menor valor de MSE, alcanzando un error promedio de: $MSE_{MLP} = 0.001491$ lo que indica una mayor capacidad para capturar el comportamiento de la serie  financiera construida. El modelo LSTM presentó un desempeño muy cercano al MLP: $MSE_{LSTM} = 0.001506$ demostrando una adecuada capacidad para modelar dependencias temporales. Finalmente, XGBoost obtuvo: $MSE_{XGBoost} = 0.001690$
+
 
 
 
