@@ -145,11 +145,10 @@ Penaliza fuertemente errores grandes.
 | Modelo | MSE Promedio | Desempeño |
 |---|---|---| 
 | MLP | 0.001491 | Mejor modelo | 
-| LSTM | 0.001506 | Muy competitivo | 
-| XGBoost | 0.001690 | Buen desempeño |
+| LSTM | 0.001506 | Buen modelo | 
+| XGBoost | 0.001690 | Buen modelo |
 
-El modelo MLP obtuvo el menor valor de MSE, alcanzando un error promedio de: $$ MSE_{MLP} = 0.001491 $$ lo que indica una mayor capacidad para capturar relaciones no lineales entre las variables financieras construidas mediante feature engineering. El modelo LSTM presentó un desempeño muy cercano al MLP: $$ MSE_{LSTM} = 0.001506 $$ demostrando una adecuada capacidad para modelar dependencias temporales y patrones secuenciales dentro de las series financieras. Por su parte, XGBoost obtuvo: $$ MSE_{XGBoost} = 0.001690 $$
-
+El modelo MLP obtuvo el menor valor de MSE, alcanzando un error promedio de: $$ MSE_{MLP} = 0.001491 $$ lo que indica una mayor capacidad para capturar el comportamiento de la serie  financiera construida. El modelo LSTM presentó un desempeño muy cercano al MLP: $$ MSE_{LSTM} = 0.001506 $$ demostrando una adecuada capacidad para modelar dependencias temporales. Finalmente, XGBoost obtuvo: $$ MSE_{XGBoost} = 0.001690 $$
 
 Los mejores hiperparámetros encontrados fueron almacenados automáticamente en:
 
@@ -160,6 +159,7 @@ Este archivo contiene:
 Modelo
 Mejor MSE
 Configuración óptima de hiperparámetros
+
 </div>
 
 ## Conclusiones y Recomendaciones
