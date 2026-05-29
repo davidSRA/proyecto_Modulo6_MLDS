@@ -99,14 +99,16 @@ dentro de la configuración de los parametros a utilizar:
 ## Evaluación del Modelo
 <div align="justify">
 
-  Estrategia de validación
+Estrategia de validación
 Se utilizó: **TimeSeriesSplit(n_splits=5)**: Esta metodología preserva la estructura temporal de los datos y evita utilizar información futura durante entrenamiento.
 
-**Métricas de evaluación**: MSE (Mean Squared Error), la cual es una Métrica principal utilizada para optimización y Penaliza fuertemente errores grandes, su formula es:
+**Métricas de evaluación**: 
+
+1. MSE (Mean Squared Error), la cual es una Métrica principal utilizada para optimización y Penaliza fuertemente errores grandes, su formula es:
 
 **$$MSE=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2$$**
 
-Coeficiente de Determinación ($R^2$): El coeficiente de determinación se calcula como: 
+2. Coeficiente de Determinación ($R^2$): El coeficiente de determinación se calcula como: 
 
 **$$ R^2 = 1 - \frac{\sum (y_i-\hat y_i)^2}{\sum (y_i-\bar y)^2} $$** 
 
