@@ -30,6 +30,7 @@ Debido a estas caracteristicas que asu vez pueden presentar aalgunos invocnvenie
 3. Volatilidad futura a 5 días (Target_Vol5d)
 
 **Objetivos del modelo**
+
 *Objetivo general*
 
 Desarrollar un proyecto de predicción que permita modelar los log retornos retornos financieros de las acciones de APPLE utilizando técnicas modernas de inteligencia artificial y optimización automática.
