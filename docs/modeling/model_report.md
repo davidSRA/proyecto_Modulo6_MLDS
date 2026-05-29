@@ -118,7 +118,7 @@ Valores cercanos a 1 indican mejor ajuste del modelo.
 | MLP | 0.000754 | 0.018160 | -0.139903 | 
 | LSTM | 0.000772 | 0.018159 | -0.112977 |
 
-El modelo MLP obtuvo el menor valor de MSE, alcanzando un error promedio de: $MSE_{MLP} = 0.001491$ lo que indica una mayor capacidad para capturar el comportamiento de la serie  financiera construida. El modelo LSTM presentó un desempeño muy cercano al MLP: $ MSE_{LSTM} = 0.001506$ demostrando una adecuada capacidad para modelar dependencias temporales. Finalmente, XGBoost obtuvo: $ MSE_{XGBoost} = 0.001690$
+El modelo MLP obtuvo el menor valor de MSE, alcanzando un error promedio de: $MSE_{MLP} = 0.001491$ lo que indica una mayor capacidad para capturar el comportamiento de la serie  financiera construida. El modelo LSTM presentó un desempeño muy cercano al MLP: $MSE_{LSTM} = 0.001506$ demostrando una adecuada capacidad para modelar dependencias temporales. Finalmente, XGBoost obtuvo: $MSE_{XGBoost} = 0.001690$
 
 ![Texto alternativo](metricas.png)
 
