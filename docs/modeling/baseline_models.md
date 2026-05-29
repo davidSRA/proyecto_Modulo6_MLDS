@@ -17,6 +17,7 @@ El pipeline implementado incluye:
 ## Descripción del modelo
 
 <div align="justify">
+   
 Los modelos considerados para el analisis de las series financieras, y que se consideran dentro de la linea base incluyen:
 
 1. Redes neuronales MLP
@@ -28,14 +29,28 @@ Los modelos considerados para el analisis de las series financieras, y que se co
 
 ## Variables de entrada
 <div align="justify">
-Las variables de entrada fueron construidas mediante técnicas conocidas del analisis de series de datos temporales para el suavizado de las series como, los promedios moviles, y sus diferentes versiones. En general las medias moviles, permiten sustraer o eliminar las variabilidad de la serie, para volverla una serie estacional y eliminar su volatilidad. Los indicadores calculados a partir de los log retornos son los siguientes:
-Las variables de entrada fueron construidas mediante técnicas de ingeniería de características sobre series de tiempo financieras.
+
+La principal variable de entrada es el precio de las acciones de APPLE.
+Posteriormente, esta variable fue calculada los log retornos de acuerdo con la siguiente formula: 
+
+$$LogReturn_t =
+\ln\left(
+\frac{P_t}{P_{t-1}}
+\right)$$
+
+donde,
+
+$P_t$ es el precio en el tiempo actual.
+$P_{t-1}$ es el precio del período anterior.
+$\ln$ corresponde al logaritmo natural.
+
+Posteriormente, a partur de esta variable, se construyeron otras variables variables de entrada, las cuales fueron construidas mediante técnicas conocidas del analisis de series de datos temporales para el suavizado de las series como, los promedios moviles, y sus diferentes versiones. En general las medias moviles, permiten sustraer o eliminar las variabilidad de la serie, para volverla una serie estacional y eliminar su volatilidad. Los indicadores calculados a partir de los log retornos son los siguientes:.
 
 **Variables derivadas de los log retornos**
 1. MACD (Moving Average Convergence Divergence)
 2. MACD
 3. MACD_Signal
-4 MACD_Hist
+4. MACD_Hist
 
 **Elementos que capturan momentum y cambios de tendencia mediante medias móviles exponenciales.**
 1. Bandas de Bollinger
@@ -52,6 +67,10 @@ Las variables de entrada fueron construidas mediante técnicas de ingeniería de
 1. Oscilador Estocástico
 2. Stoch_K
 3. Stoch_D
+
+![img](distribucion_indicadores.png)
+
+![img](correlacion_features_target.png)
 
 
 </div>
@@ -72,50 +91,75 @@ Target_1d: Es el retorno esperado a 1 día.
 Target_5d: Es el retorno acumulado esperado a 5 días.
 Target_Vol5d: Es la volatilidad futura esperada en 5 días.
 
-El principal objetivo del modelo corresponde al modelamiento y predicción de la variable de los retornos Target_5d.
+El principal objetivo del modelo corresponde al modelamiento y predicción de la variable de los retornos: Target_1d y Target_5d.
+
 </div>
 
 
 ## Evaluación del modelo
 <div align="justify">
-### Métricas de evaluación
 
-Dentro del listado de las Métricas de evaluación mas utilizadas y teniendo en cuenta que los datos de este proyecto aplicado son de tipo continuo, las métricas consideradas para evaluar el desempeño del modelo son las siguienets:
+   **Métricas de evaluación**: 
 
-1. RMSE (Root Mean Squared Error): Mide el error cuadrático promedio entre predicciones y valores reales.
+1. MSE (Mean Squared Error), la cual es una Métrica principal utilizada para optimización y Penaliza fuertemente errores grandes, su formula es:
 
-2. MAE (Mean Absolute Error): Mide el error absoluto promedio.
+**$$MSE=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2$$**
 
-3. $R^2$ (Coeficiente de determinación): Indica la proporción de variabilidad explicada por el modelo.
+2. Coeficiente de Determinación ($R^2$): El coeficiente de determinación se calcula como: 
 
-4. Correlación de Pearson: Evalúa la relación lineal entre predicciones y valores observados.
+**$$ R^2 = 1 - \frac{\sum (y_i-\hat y_i)^2}{\sum (y_i-\bar y)^2} $$** 
+
+Valores cercanos a 1 indican mejor ajuste del modelo.
+
+
 </div>
 
 
 ### Resultados de evaluación
 <div align="justify">
-   
-Tabla que muestra los resultados de evaluación del modelo baseline, incluyendo las métricas de evaluación.
+
+
+
+| Modelo | MSE | MAE | $R^2$ |
+|---|---|---|---| 
+| XGBoost | 0.000698 | 0.016723 | 0.113560 | 
+| MLP | 0.000754 | 0.018160 | -0.139903 | 
+| LSTM | 0.000772 | 0.018159 | -0.112977 |
+
+El modelo MLP obtuvo el menor valor de MSE, alcanzando un error promedio de: $MSE_{MLP} = 0.001491$ lo que indica una mayor capacidad para capturar el comportamiento de la serie  financiera construida. El modelo LSTM presentó un desempeño muy cercano al MLP: $MSE_{LSTM} = 0.001506$ demostrando una adecuada capacidad para modelar dependencias temporales. Finalmente, XGBoost obtuvo: $MSE_{XGBoost} = 0.001690$
+
+
 </div>
 
 
 ## Análisis de los resultados
 <div align="justify">
    
-Descripción de los resultados del modelo baseline, incluyendo fortalezas y debilidades del modelo.
+El modelo XGBoost presentó el mejor desempeño general dentro de los demas modelos entrenados, obteniendo el menor error cuadrático medio y el único valor positivo del coeficiente de determinación. Esto sugiere que el modelo basado en árboles logró capturar de mejor manera la estructura de los datos financieros y presentar una mayor capacidad de generalización.
+
+Los modelos MLP y LSTM presentaron desempeños cercanos entre sí, aunque con valores negativos de $R^2$, indicando limitaciones para explicar completamente la variabilidad de la serie financiera. A pesar de ello, las redes neuronales demostraron capacidad para capturar relaciones no lineales presentes en los retornos financieros.
+
 </div>
 
 
 ## Conclusiones
 <div align="justify">
    
-Conclusiones generales sobre el rendimiento del modelo baseline y posibles áreas de mejora.
+Los resultados obtenidos a partir de los datos de entrenamiento muestran que:
+
+* XGBoost presentó el mejor desempeño general.
+* Las variables derivadas construidas mediante indicadores técnicos aportaron información relevante.
+* Las redes neuronales requieren una optimización más cuidadosa para mejorar su capacidad de generalización.
+* La naturaleza altamente volátil y no estacionaria de los mercados financieros representa un desafío importante para el modelamiento predictivo.
 </div>
 
 
 ## Referencias
 <div align="justify">
-Lista de referencias utilizadas para construir el modelo baseline y evaluar su rendimiento.
-
-Espero que te sea útil esta plantilla. Recuerda que puedes adaptarla a las necesidades específicas de tu proyecto.
+1. Chen, T., Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System.
+2. Kingma, D., Ba, J. (2014). Adam: A Method for Stochastic Optimization.
+3. Murphy, J. (1999). Technical Analysis of the Financial Markets.
+4. Tsay, R. (2010). Analysis of Financial Time Series.
+5. Chollet, F. (2021). Deep Learning with Python.
+6. Optuna Developers. Optuna Documentation.
 </div>

@@ -132,7 +132,12 @@ Este archivo contiene: Modelo, Mejor MSE y la configuración óptima de hiperpar
 ## Conclusiones y Recomendaciones
 <div align="justify">
 
-En esta sección se presentarán las conclusiones y recomendaciones a partir de los resultados obtenidos. Se deben incluir los puntos fuertes y débiles del modelo, las limitaciones y los posibles escenarios de aplicación.
+Los resultados obtenidos a partir de los datos de entrenamiento muestran que:
+
+XGBoost presentó el mejor desempeño general.
+Las variables derivadas construidas mediante indicadores técnicos aportaron información relevante.
+Las redes neuronales requieren una optimización más cuidadosa para mejorar su capacidad de generalización.
+La naturaleza altamente volátil y no estacionaria de los mercados financieros representa un desafío importante para el modelamiento predictivo.
 </div>
 
 
