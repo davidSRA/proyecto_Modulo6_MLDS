@@ -68,6 +68,11 @@ Posteriormente, a partur de esta variable, se construyeron otras variables varia
 2. Stoch_K
 3. Stoch_D
 
+![img](distribucion_indicadores.png)
+
+![img](correlacion_features_target.png)
+
+
 </div>
 
 
@@ -113,6 +118,8 @@ Valores cercanos a 1 indican mejor ajuste del modelo.
 ### Resultados de evaluación
 <div align="justify">
 
+
+
 | Modelo | MSE | MAE | $R^2$ |
 |---|---|---|---| 
 | XGBoost | 0.000698 | 0.016723 | 0.113560 | 
@@ -122,22 +129,28 @@ Valores cercanos a 1 indican mejor ajuste del modelo.
 El modelo MLP obtuvo el menor valor de MSE, alcanzando un error promedio de: $MSE_{MLP} = 0.001491$ lo que indica una mayor capacidad para capturar el comportamiento de la serie  financiera construida. El modelo LSTM presentó un desempeño muy cercano al MLP: $MSE_{LSTM} = 0.001506$ demostrando una adecuada capacidad para modelar dependencias temporales. Finalmente, XGBoost obtuvo: $MSE_{XGBoost} = 0.001690$
 
 
-
-
 </div>
 
 
 ## Análisis de los resultados
 <div align="justify">
    
-Descripción de los resultados del modelo baseline, incluyendo fortalezas y debilidades del modelo.
+El modelo XGBoost presentó el mejor desempeño general dentro de los demas modelos entrenados, obteniendo el menor error cuadrático medio y el único valor positivo del coeficiente de determinación. Esto sugiere que el modelo basado en árboles logró capturar de mejor manera la estructura de los datos financieros y presentar una mayor capacidad de generalización.
+
+Los modelos MLP y LSTM presentaron desempeños cercanos entre sí, aunque con valores negativos de $R^2$, indicando limitaciones para explicar completamente la variabilidad de la serie financiera. A pesar de ello, las redes neuronales demostraron capacidad para capturar relaciones no lineales presentes en los retornos financieros.
+
 </div>
 
 
 ## Conclusiones
 <div align="justify">
    
-Conclusiones generales sobre el rendimiento del modelo baseline y posibles áreas de mejora.
+Los resultados obtenidos a partir de los datos de entrenamiento muestran que:
+
+* XGBoost presentó el mejor desempeño general.
+* Las variables derivadas construidas mediante indicadores técnicos aportaron información relevante.
+* Las redes neuronales requieren una optimización más cuidadosa para mejorar su capacidad de generalización.
+* La naturaleza altamente volátil y no estacionaria de los mercados financieros representa un desafío importante para el modelamiento predictivo.
 </div>
 
 
