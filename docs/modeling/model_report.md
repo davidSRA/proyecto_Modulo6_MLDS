@@ -106,11 +106,11 @@ Se utilizó: **TimeSeriesSplit(n_splits=5)**: Esta metodología preserva la estr
 
 **$MSE=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2$**
 
-| Modelo | MSE Promedio | Desempeño |
-|---|---|---| 
-| MLP | 0.001491 | Mejor modelo | 
-| LSTM | 0.001506 | Buen modelo | 
-| XGBoost | 0.001690 | Buen modelo |
+| Modelo | MSE | MAE | $R^2$ |
+|---|---|---|---| 
+| XGBoost | 0.000698 | 0.016723 | 0.113560 | 
+| MLP | 0.000754 | 0.018160 | -0.139903 | 
+| LSTM | 0.000772 | 0.018159 | -0.112977 |
 
 El modelo MLP obtuvo el menor valor de MSE, alcanzando un error promedio de: $$ MSE_{MLP} = 0.001491 $$ lo que indica una mayor capacidad para capturar el comportamiento de la serie  financiera construida. El modelo LSTM presentó un desempeño muy cercano al MLP: $$ MSE_{LSTM} = 0.001506 $$ demostrando una adecuada capacidad para modelar dependencias temporales. Finalmente, XGBoost obtuvo: $$ MSE_{XGBoost} = 0.001690 $$
 
