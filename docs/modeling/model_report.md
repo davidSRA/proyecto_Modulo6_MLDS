@@ -1,5 +1,6 @@
 # Reporte del Modelo Final
 
+<div align="justify">
 ## Resumen Ejecutivo
 
 El presente documento describe el desarrollo y evaluación del modelo final para predicción de variables financieras utilizando técnicas avanzadas de machine learning, deep learning y optimización bayesiana de hiperparámetros.
@@ -20,8 +21,10 @@ Configuración temporal de series financieras
 La evaluación se realizó mediante validación cruzada temporal (TimeSeriesSplit) utilizando 5 folds para evitar filtración de información futura (data leakage).
 
 La métrica principal utilizada fue el error cuadrático medio (MSE)
+</div>
 
 ## Descripción del Problema
+<div align="justify">
 
 El objetivo principal del proyecto consiste en predecir el comportamiento futuro de variables financieras a partir de información histórica del mercado.
 
@@ -51,8 +54,10 @@ Construir variables derivadas mediante feature engineering financiero.
 Comparar modelos de árboles, redes densas y redes recurrentes.
 Optimizar automáticamente hiperparámetros mediante Optuna.
 Minimizar el error de predicción utilizando validación temporal.
+</div>
 
 ## Descripción del Modelo
+<div align="justify">
 
 XGBoost
 
@@ -119,45 +124,31 @@ MedianPruner
 Para eliminar trials con desempeño inferior durante el entrenamiento.
 
 Esto permitió reducir significativamente el costo computacional.
+</div>
 
 ## Evaluación del Modelo
+<div align="justify">
 
 Estrategia de validación
-
-Se utilizó:
-
-TimeSeriesSplit(n_splits=5)
+Se utilizó: **TimeSeriesSplit(n_splits=5)**
 
 Esta metodología preserva la estructura temporal de los datos y evita utilizar información futura durante entrenamiento.
 
-Métricas de evaluación
+**Métricas de evaluación**
 MSE (Mean Squared Error)
 
 Métrica principal utilizada para optimización.
-
-$MSE=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2$
+**$MSE=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2$**
 
 Penaliza fuertemente errores grandes.
 
-Evaluación multisalida
+| Modelo | MSE Promedio | Desempeño |
+|---|---|---| 
+| MLP | 0.001491 | Mejor modelo | 
+| LSTM | 0.001506 | Muy competitivo | 
+| XGBoost | 0.001690 | Buen desempeño |
 
-Los modelos predicen simultáneamente:
-
-Retornos futuros
-Volatilidad futura
-
-El MSE promedio se calculó sobre todas las salidas.
-
-Resultados del modelo
-Modelo	Trials	Métrica principal
-XGBoost	50	MSE promedio
-MLP	40	MSE promedio
-LSTM	30	MSE promedio
-Resultados comparativos
-Modelo	Mejor MSE	Estado
-XGBoost	Pendiente	Pendiente
-MLP	Pendiente	Pendiente
-LSTM	Pendiente	Pendiente
+El modelo MLP obtuvo el menor valor de MSE, alcanzando un error promedio de: $$ MSE_{MLP} = 0.001491 $$ lo que indica una mayor capacidad para capturar relaciones no lineales entre las variables financieras construidas mediante feature engineering. El modelo LSTM presentó un desempeño muy cercano al MLP: $$ MSE_{LSTM} = 0.001506 $$ demostrando una adecuada capacidad para modelar dependencias temporales y patrones secuenciales dentro de las series financieras. Por su parte, XGBoost obtuvo: $$ MSE_{XGBoost} = 0.001690 $$
 
 
 Los mejores hiperparámetros encontrados fueron almacenados automáticamente en:
@@ -169,15 +160,23 @@ Este archivo contiene:
 Modelo
 Mejor MSE
 Configuración óptima de hiperparámetros
+</div>
 
 ## Conclusiones y Recomendaciones
+<div align="justify">
 
 En esta sección se presentarán las conclusiones y recomendaciones a partir de los resultados obtenidos. Se deben incluir los puntos fuertes y débiles del modelo, las limitaciones y los posibles escenarios de aplicación.
+</div>
+
 
 ## Referencias
+<div align="justify">
+
 Chen, T., Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System.
 Kingma, D., Ba, J. (2014). Adam: A Method for Stochastic Optimization.
 Murphy, J. (1999). Technical Analysis of the Financial Markets.
 Tsay, R. (2010). Analysis of Financial Time Series.
 Chollet, F. (2021). Deep Learning with Python.
+</div>
+
 Optuna Developers. Optuna Documentation.
