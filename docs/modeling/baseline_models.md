@@ -156,7 +156,10 @@ Los resultados obtenidos a partir de los datos de entrenamiento muestran que:
 
 ## Referencias
 <div align="justify">
-Lista de referencias utilizadas para construir el modelo baseline y evaluar su rendimiento.
-
-Espero que te sea útil esta plantilla. Recuerda que puedes adaptarla a las necesidades específicas de tu proyecto.
+1. Chen, T., Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System.
+2. Kingma, D., Ba, J. (2014). Adam: A Method for Stochastic Optimization.
+3. Murphy, J. (1999). Technical Analysis of the Financial Markets.
+4. Tsay, R. (2010). Analysis of Financial Time Series.
+5. Chollet, F. (2021). Deep Learning with Python.
+6. Optuna Developers. Optuna Documentation.
 </div>
