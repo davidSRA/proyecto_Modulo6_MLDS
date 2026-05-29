@@ -47,7 +47,7 @@ Desarrollar un proyecto de predicción que permita modelar los log retornos reto
 
 Como se menciono anteriormente, los tres modelos utilizados son:
 
-1.) XGBoost: Modelo basado en gradient boosting sobre árboles de decisión.
+**1.) XGBoost: Modelo basado en gradient boosting sobre árboles de decisión.**
 
 donde se optimizaron los Hiperparámetros:
 - n_estimators
@@ -56,7 +56,7 @@ donde se optimizaron los Hiperparámetros:
 - subsample
 - colsample_bytree
 
-2.) MLP (Multi Layer Perceptron): Red neuronal densa completamente conectada.
+**2.) MLP (Multi Layer Perceptron): Red neuronal densa completamente conectada.**
 
 con los siguientes componentes optimizados
 - Número de capas
@@ -72,7 +72,7 @@ EarlyStopping
 Validación temporal
 
 
-3.)  LSTM: Red neuronal recurrente especializada en series de tiempo.
+** 3.)  LSTM: Red neuronal recurrente especializada en series de tiempo.**
 
 la cual incluye los siguients Hiperparámetros optimizados:
 
