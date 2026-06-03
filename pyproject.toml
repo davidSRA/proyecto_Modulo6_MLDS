@@ -3,14 +3,28 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "nombre_paquete"
+name = "aaplpredict"
 version = "0.1.0"
-authors = [{name = "autor1", email = "correo@correo.com"}]
-description = "Descripción del proyecto"
-requires-python = ">3.8"
+authors = [{name = "David Rodriguez", email = "correo@correo.com"}]
+description = "Predicción de retornos y volatilidad de AAPL con XGBoost, MLP y LSTM"
+requires-python = ">=3.9"
 dependencies = [
-    "numpy"
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "xgboost",
+    "tensorflow",
+    "optuna",
+    "mlflow",
+    "yfinance",
+    "kagglehub",
+    "matplotlib",
+    "seaborn",
+    "fpdf",
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
 ]
 
 [tool.setuptools.packages.find]
-where = ["src/"]
+where = ["src"]

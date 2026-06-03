@@ -1,0 +1,16 @@
+numpy
+pandas
+scikit-learn
+xgboost
+tensorflow
+optuna
+mlflow
+yfinance
+kagglehub
+matplotlib
+seaborn
+fpdf
+fastapi
+uvicorn[standard]
+pydantic
+joblib

@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: aaplpredict
+Version: 0.1.0
+Summary: Predicción de retornos y volatilidad de AAPL con XGBoost, MLP y LSTM
+Author-email: David Rodriguez <correo@correo.com>
+Requires-Python: >=3.9
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: xgboost
+Requires-Dist: tensorflow
+Requires-Dist: optuna
+Requires-Dist: mlflow
+Requires-Dist: yfinance
+Requires-Dist: kagglehub
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: fpdf
+Requires-Dist: fastapi
+Requires-Dist: uvicorn[standard]
+Requires-Dist: pydantic

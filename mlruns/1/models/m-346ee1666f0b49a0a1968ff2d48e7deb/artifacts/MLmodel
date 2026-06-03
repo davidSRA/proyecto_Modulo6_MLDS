@@ -1,0 +1,22 @@
+artifact_path: file:///C:/Users/USUARIO/Documents/proyecto_Modulo6_MLDS/mlruns/1/models/m-346ee1666f0b49a0a1968ff2d48e7deb/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.11.9
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.sklearn.XGBRegressor
+    model_format: ubj
+    xgb_version: 3.2.0
+mlflow_version: 3.12.0
+model_id: m-346ee1666f0b49a0a1968ff2d48e7deb
+model_size_bytes: 480487
+model_uuid: m-346ee1666f0b49a0a1968ff2d48e7deb
+prompts: null
+run_id: 82bc62780644451c8e99e551dc5e4c55
+utc_time_created: '2026-06-03 22:31:50.498021'
