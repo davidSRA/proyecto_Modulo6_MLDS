@@ -1,5 +1,6 @@
 import os
 from datetime import date, timedelta
+from importlib.resources import files
 from pathlib import Path
 
 import joblib
@@ -21,10 +22,23 @@ TARGET_COLS = ["Target_1d", "Target_5d", "Target_Vol5d"]
 # Días mínimos que necesitan los indicadores técnicos (MACD slow=26 + signal=9)
 _MIN_INDICADORES = 35
 
-# Raíz del proyecto (src/aaplpredict/api/ → 3 niveles arriba → src/ → 1 más → raíz)
-_PROJECT_ROOT = Path(__file__).parents[3]
-_MODELS_DIR   = Path(os.environ.get("MODELS_DIR", _PROJECT_ROOT / "models"))
-_PARAMS_CSV   = _PROJECT_ROOT / "src" / "aaplpredict" / "training" / "mejores_params.csv"
+# CSV instalado como package data — funciona igual en dev y producción
+_PARAMS_CSV = files("aaplpredict.training").joinpath("mejores_params.csv")
+
+
+def _find_models_dir() -> Path:
+    """Encuentra la carpeta models/ sin requerir variables de entorno manuales."""
+    # 1. Variable de entorno explícita (override manual si se necesita)
+    if "MODELS_DIR" in os.environ:
+        return Path(os.environ["MODELS_DIR"])
+    # 2. Railway clona el repo en /app
+    if Path("/app/models").exists():
+        return Path("/app/models")
+    # 3. Desarrollo local: carpeta models/ en la raíz del proyecto
+    return Path(__file__).parents[3] / "models"
+
+
+_MODELS_DIR = _find_models_dir()
 
 
 # ─────────────────────────────────────────────
