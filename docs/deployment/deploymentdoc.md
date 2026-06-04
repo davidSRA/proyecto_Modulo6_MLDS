@@ -46,7 +46,7 @@ B --> E[/GET health/]
 C --> F[API de Yahoo Finance]
 
 D --> G[Preprocesamiento]
-G --> H[Feature Engineering]
+G --> H[Predicción]
 
 H --> I[XGBoost]
 H --> J[MLP]
