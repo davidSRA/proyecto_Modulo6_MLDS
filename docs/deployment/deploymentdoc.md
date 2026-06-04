@@ -127,9 +127,54 @@ aaplpredict/
 
 En Railway:
 
-- PORT  
-- RAILWAY_ENVIRONMENT  
-- RAILWAY_PROJECT_ID  
+---
+
+## RAILWAY_PUBLIC_DOMAIN
+
+Dominio público del servicio
+
+---
+
+## RAILWAY_PRIVATE_DOMAIN
+
+DNS privado del servicio
+
+---
+
+## RAILWAY_PROJECT_NAME
+
+Nombre del proyecto
+
+---
+
+## RAILWAY_ENVIRONMENT_NAME
+
+Nombre del entorno del servicio
+
+---
+
+## RAILWAY_SERVICE_NAME
+
+Nombre del servicio
+
+---
+
+## RAILWAY_PROJECT_ID
+
+ID del proyecto
+
+---
+
+## RAILWAY_ENVIRONMENT_ID
+
+ID del entorno
+
+---
+
+## RAILWAY_SERVICE_ID
+
+ID del servicio
+```
 
 ---
 
