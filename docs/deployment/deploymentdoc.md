@@ -212,7 +212,7 @@ con los modelos:
 Opcionalmente:
 
 ```bash
-MODELS_DIR=/ruta/a/models
+MODELS_DIR=https://github.com/davidSRA/proyecto_Modulo6_MLDS/tree/master/models
 ```
 
 En Railway:
