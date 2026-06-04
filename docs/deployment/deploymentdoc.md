@@ -146,7 +146,7 @@ En Railway:
 ## 1. Clonar el repositorio
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone <https://github.com/davidSRA/proyecto_Modulo6_MLDS/tree/master/src/aaplpredict>
 cd aaplpredict
 ```
 
