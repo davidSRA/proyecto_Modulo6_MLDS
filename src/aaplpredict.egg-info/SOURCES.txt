@@ -100,6 +100,7 @@ src/aaplpredict/api/__init__.py
 src/aaplpredict/api/main.py
 src/aaplpredict/api/predictor.py
 src/aaplpredict/api/schemas.py
+src/aaplpredict/api/static/index.html
 src/aaplpredict/data_acquisition/__init__.py
 src/aaplpredict/data_acquisition/main.py
 src/aaplpredict/eda/__init__.py

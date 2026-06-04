@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAPLPredict</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        .card-glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .btn-predict {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .btn-predict:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.45);
+        }
+        .btn-predict:active:not(:disabled) { transform: translateY(0); }
+        .btn-predict:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .badge-up   { color: #4ade80; }
+        .badge-down { color: #f87171; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .spin { animation: spin 0.8s linear infinite; display: inline-block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        .fade-in { animation: fadeIn 0.35s ease both; }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+            background-position: right 0.75rem center;
+            background-repeat: no-repeat;
+            background-size: 1.25em;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 min-h-screen text-slate-100">
+
+<!-- ── Header ─────────────────────────────────────────────── -->
+<header class="sticky top-0 z-20 border-b border-slate-700/50 bg-slate-900/90 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center font-bold text-sm">A</div>
+            <span class="font-semibold">AAPL<span class="text-slate-400 font-normal">Predict</span></span>
+            <span class="text-xs bg-slate-800 border border-slate-700 text-slate-400 px-2 py-0.5 rounded-full hidden sm:block">
+                ML · Forecasting
+            </span>
+        </div>
+        <div id="live-dot" class="hidden items-center gap-2 text-xs text-slate-400">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400"></span>
+            </span>
+            Datos en tiempo real
+        </div>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-6 py-8 space-y-5">
+
+    <!-- ── Controls ────────────────────────────────────────── -->
+    <div class="card-glass rounded-2xl p-5">
+        <div class="flex flex-col sm:flex-row gap-4 items-end">
+            <div class="flex-1 space-y-1.5">
+                <label class="text-xs font-medium text-slate-400 uppercase tracking-widest">
+                    Modelo de predicción
+                </label>
+                <select id="modelo"
+                    class="w-full bg-slate-800 border border-slate-600/60 rounded-xl px-4 py-3 text-slate-100
+                           focus:outline-none focus:ring-2 focus:ring-blue-500/70 focus:border-transparent pr-10">
+                    <option value="XGBoost">⚡  XGBoost — Gradient Boosting</option>
+                    <option value="MLP">🧠  MLP — Red Neuronal Densa</option>
+                    <option value="LSTM">🔄  LSTM — Red Neuronal Recurrente</option>
+                </select>
+            </div>
+            <button id="btn" onclick="predecir()"
+                class="btn-predict px-8 py-3 rounded-xl font-semibold text-white flex items-center gap-2 whitespace-nowrap">
+                <span id="btn-icon">→</span>
+                <span id="btn-label">Predecir</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ── Error banner ─────────────────────────────────────── -->
+    <div id="error" class="hidden bg-red-900/30 border border-red-500/40 rounded-xl p-4 text-red-300 text-sm fade-in"></div>
+
+    <!-- ── Metric cards ─────────────────────────────────────── -->
+    <div id="cards" class="hidden grid grid-cols-2 lg:grid-cols-4 gap-4 fade-in">
+
+        <div class="card-glass rounded-2xl p-5 space-y-1">
+            <p class="text-xs text-slate-400 uppercase tracking-wider">Precio actual</p>
+            <p id="c-actual" class="text-2xl font-bold">—</p>
+            <p class="text-xs text-slate-500">Último cierre AAPL</p>
+        </div>
+
+        <div class="card-glass rounded-2xl p-5 space-y-1">
+            <p class="text-xs text-slate-400 uppercase tracking-wider">Predicción · +1d</p>
+            <p id="c-1d" class="text-2xl font-bold text-blue-300">—</p>
+            <p id="c-1d-pct" class="text-sm font-semibold">—</p>
+        </div>
+
+        <div class="card-glass rounded-2xl p-5 space-y-1">
+            <p class="text-xs text-slate-400 uppercase tracking-wider">Predicción · +5d</p>
+            <p id="c-5d" class="text-2xl font-bold text-amber-300">—</p>
+            <p id="c-5d-pct" class="text-sm font-semibold">—</p>
+        </div>
+
+        <div class="card-glass rounded-2xl p-5 space-y-1">
+            <p class="text-xs text-slate-400 uppercase tracking-wider">Volatilidad 5d σ</p>
+            <p id="c-vol" class="text-2xl font-bold text-purple-300">—</p>
+            <p id="c-ic"  class="text-xs text-slate-400">Intervalo de confianza</p>
+        </div>
+
+    </div>
+
+    <!-- ── Chart ────────────────────────────────────────────── -->
+    <div class="card-glass rounded-2xl p-6">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-5">
+            <div>
+                <h2 class="font-semibold text-slate-100">Apple Inc. <span class="text-slate-400 font-normal text-sm">AAPL · USD</span></h2>
+                <p class="text-xs text-slate-500 mt-0.5">Últimos 45 días hábiles + proyección</p>
+            </div>
+            <!-- Leyenda -->
+            <div id="legend" class="hidden flex-wrap gap-x-5 gap-y-2 text-xs text-slate-400 pt-0.5">
+                <span class="flex items-center gap-1.5">
+                    <span class="inline-block w-5 h-0.5 bg-blue-400 rounded"></span>Histórico
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <span class="inline-block w-5 border-t-2 border-dashed border-amber-400"></span>Predicción
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <span class="inline-block w-4 h-3 rounded bg-amber-400/20 border border-amber-400/30"></span>Intervalo de confianza ±1σ
+                </span>
+            </div>
+        </div>
+
+        <div class="relative" style="height:380px">
+            <canvas id="chart"></canvas>
+            <div id="chart-msg" class="absolute inset-0 flex items-center justify-center text-slate-500 text-sm">
+                <div class="text-center space-y-2">
+                    <div class="text-3xl">📈</div>
+                    <div>Cargando datos de AAPL...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Model info ───────────────────────────────────────── -->
+    <div id="model-info" class="hidden card-glass rounded-xl px-5 py-3.5 text-sm text-slate-400 flex items-center gap-2 fade-in">
+        <span class="text-base">🤖</span>
+        <span id="model-info-text"></span>
+    </div>
+
+</main>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   Estado global
+═══════════════════════════════════════════════════════════ */
+let chart     = null;
+let nHistoric = 0;   // cuántas etiquetas son históricas (para saber dónde insertar predicciones)
+
+const MODEL_DESC = {
+    XGBoost : 'XGBoost · Gradient Boosting con indicadores técnicos y lags temporales',
+    MLP     : 'MLP · Red neuronal densa con normalización StandardScaler',
+    LSTM    : 'LSTM · Red neuronal recurrente con ventana de secuencias temporales',
+};
+
+/* ═══════════════════════════════════════════════════════════
+   Inicializar / reconstruir el gráfico
+═══════════════════════════════════════════════════════════ */
+function buildChart(labels, prices) {
+    const canvas = document.getElementById('chart');
+    const ctx    = canvas.getContext('2d');
+
+    // Gradiente azul bajo la línea histórica
+    const gradBlue = ctx.createLinearGradient(0, 0, 0, 380);
+    gradBlue.addColorStop(0,   'rgba(96, 165, 250, 0.22)');
+    gradBlue.addColorStop(0.8, 'rgba(96, 165, 250, 0)');
+
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [
+                /* 0 — Histórico */
+                {
+                    label: 'Histórico',
+                    data: prices,
+                    borderColor: '#60a5fa',
+                    backgroundColor: gradBlue,
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 0,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: '#60a5fa',
+                    pointHoverBorderColor: '#fff',
+                    spanGaps: false,
+                },
+                /* 1 — Línea de predicción (dashed amber) */
+                {
+                    label: 'Predicción',
+                    data: [],
+                    borderColor: '#fbbf24',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2.5,
+                    borderDash: [6, 4],
+                    fill: false,
+                    tension: 0.3,
+                    pointRadius: [],
+                    pointHoverRadius: 6,
+                    pointBackgroundColor: '#fbbf24',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    spanGaps: true,
+                },
+                /* 2 — IC Superior (cono de incertidumbre) */
+                {
+                    label: 'IC Superior',
+                    data: [],
+                    borderColor: 'rgba(251, 191, 36, 0.3)',
+                    backgroundColor: 'rgba(251, 191, 36, 0.10)',
+                    borderWidth: 1,
+                    borderDash: [3, 3],
+                    fill: '+1',          // rellena hasta dataset[3] (IC Inferior)
+                    tension: 0.3,
+                    pointRadius: 0,
+                    spanGaps: true,
+                },
+                /* 3 — IC Inferior */
+                {
+                    label: 'IC Inferior',
+                    data: [],
+                    borderColor: 'rgba(251, 191, 36, 0.3)',
+                    backgroundColor: 'transparent',
+                    borderWidth: 1,
+                    borderDash: [3, 3],
+                    fill: false,
+                    tension: 0.3,
+                    pointRadius: 0,
+                    spanGaps: true,
+                },
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            animation: { duration: 600, easing: 'easeInOutQuart' },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor : 'rgba(15, 23, 42, 0.96)',
+                    borderColor     : 'rgba(255,255,255,0.09)',
+                    borderWidth     : 1,
+                    titleColor      : '#94a3b8',
+                    bodyColor       : '#f1f5f9',
+                    padding         : 12,
+                    itemSort        : (a, b) => b.parsed.y - a.parsed.y,
+                    callbacks: {
+                        label: ctx => {
+                            if (ctx.parsed.y === null || ctx.parsed.y === undefined) return null;
+                            const val = `$${ctx.parsed.y.toFixed(2)}`;
+                            return `  ${ctx.dataset.label}: ${val}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid  : { color: 'rgba(255,255,255,0.04)' },
+                    border: { color: 'rgba(255,255,255,0.08)' },
+                    ticks : {
+                        color         : '#475569',
+                        maxTicksLimit : 10,
+                        maxRotation   : 0,
+                        font          : { size: 11 },
+                    }
+                },
+                y: {
+                    grid  : { color: 'rgba(255,255,255,0.04)' },
+                    border: { color: 'rgba(255,255,255,0.08)' },
+                    ticks : {
+                        color    : '#475569',
+                        font     : { size: 11 },
+                        callback : v => `$${v.toFixed(0)}`,
+                    }
+                }
+            }
+        }
+    });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Cargar historial desde /history
+═══════════════════════════════════════════════════════════ */
+async function loadHistory() {
+    const res  = await fetch('/history?dias=45');
+    const data = await res.json();
+
+    nHistoric = data.dates.length;
+
+    const labels = data.dates.map(d => {
+        const dt = new Date(d + 'T12:00:00');
+        return dt.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
+    });
+
+    document.getElementById('chart-msg').style.display = 'none';
+    buildChart(labels, data.prices);
+    return data;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Superponer predicción en el gráfico
+   — Cono de incertidumbre: arranca en precio_actual (0 error)
+     y se ensancha hasta el intervalo de confianza en +5d —
+═══════════════════════════════════════════════════════════ */
+function overlayPrediction(pred) {
+    const n = nHistoric;  // número de puntos históricos
+
+    // ── Etiquetas futuras
+    chart.data.labels.push('+1d hábil', '+5d hábiles');
+
+    // ── Histórico: mantener, agregar nulls para los nuevos puntos
+    chart.data.datasets[0].data.push(null, null);
+
+    // ── Línea de predicción: ancla en último precio real → +1d → +5d
+    const predLine = Array(n - 1).fill(null);
+    predLine.push(pred.precio_actual, pred.precio_1d, pred.precio_5d);
+    chart.data.datasets[1].data       = predLine;
+    chart.data.datasets[1].pointRadius = [
+        ...Array(n - 1).fill(0),
+        4,   // punto ancla (precio actual)
+        6,   // predicción +1d
+        6,   // predicción +5d
+    ];
+
+    // ── Cono superior: precio_actual → (interpolado) → intervalo_5d_sup
+    //    La interpolación en +1d usa √(1/5) del ancho total del IC (regla de raíz del tiempo)
+    const halfWidth5d = pred.intervalo_5d_sup - pred.precio_actual;
+    const halfWidth1d = halfWidth5d * Math.sqrt(1 / 5);
+    const sup1d = pred.precio_actual + halfWidth1d;
+    const inf1d = pred.precio_actual - halfWidth1d;
+
+    const icSup = Array(n - 1).fill(null);
+    icSup.push(pred.precio_actual, sup1d, pred.intervalo_5d_sup);
+    chart.data.datasets[2].data = icSup;
+
+    // ── Cono inferior
+    const icInf = Array(n - 1).fill(null);
+    icInf.push(pred.precio_actual, inf1d, pred.intervalo_5d_inf);
+    chart.data.datasets[3].data = icInf;
+
+    chart.update();
+
+    // Mostrar leyenda
+    const legend = document.getElementById('legend');
+    legend.classList.remove('hidden');
+    legend.classList.add('flex');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Helpers UI
+═══════════════════════════════════════════════════════════ */
+function pctBadge(actual, pred) {
+    const pct   = ((pred - actual) / actual) * 100;
+    const sign  = pct >= 0 ? '+' : '';
+    const cls   = pct >= 0 ? 'badge-up' : 'badge-down';
+    const arrow = pct >= 0 ? '↑' : '↓';
+    return `<span class="${cls}">${arrow} ${sign}${pct.toFixed(2)}%</span>`;
+}
+
+function setBtnLoading(loading) {
+    const btn   = document.getElementById('btn');
+    const icon  = document.getElementById('btn-icon');
+    const label = document.getElementById('btn-label');
+    btn.disabled   = loading;
+    icon.className = loading ? 'spin' : '';
+    icon.textContent = loading ? '⟳' : '→';
+    label.textContent = loading ? 'Calculando…' : 'Predecir';
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Acción principal: predecir
+═══════════════════════════════════════════════════════════ */
+async function predecir() {
+    const errEl = document.getElementById('error');
+    errEl.classList.add('hidden');
+    setBtnLoading(true);
+
+    try {
+        // 1 — Recargar historial fresco y reconstruir gráfico limpio
+        await loadHistory();
+
+        // 2 — POST /predict
+        const modelo = document.getElementById('modelo').value;
+        const res    = await fetch('/predict', {
+            method  : 'POST',
+            headers : { 'Content-Type': 'application/json' },
+            body    : JSON.stringify({ modelo }),
+        });
+
+        if (!res.ok) {
+            const body = await res.json().catch(() => ({}));
+            throw new Error(body.detail || `HTTP ${res.status}`);
+        }
+
+        const pred = await res.json();
+
+        // 3 — Superponer predicción en el gráfico
+        overlayPrediction(pred);
+
+        // 4 — Actualizar cards
+        const cards = document.getElementById('cards');
+        cards.classList.remove('hidden');
+        cards.classList.add('grid');
+
+        document.getElementById('c-actual').textContent = `$${pred.precio_actual.toFixed(2)}`;
+
+        document.getElementById('c-1d').textContent = `$${pred.precio_1d.toFixed(2)}`;
+        document.getElementById('c-1d-pct').innerHTML = pctBadge(pred.precio_actual, pred.precio_1d);
+
+        document.getElementById('c-5d').textContent = `$${pred.precio_5d.toFixed(2)}`;
+        document.getElementById('c-5d-pct').innerHTML = pctBadge(pred.precio_actual, pred.precio_5d);
+
+        document.getElementById('c-vol').textContent = `${(pred.volatilidad_5d * 100).toFixed(2)}%`;
+        document.getElementById('c-ic').textContent  =
+            `IC: $${pred.intervalo_5d_inf.toFixed(2)} – $${pred.intervalo_5d_sup.toFixed(2)}`;
+
+        // 5 — Info del modelo
+        const mi = document.getElementById('model-info');
+        document.getElementById('model-info-text').textContent = MODEL_DESC[pred.modelo_usado] ?? pred.modelo_usado;
+        mi.classList.remove('hidden');
+        mi.classList.add('flex');
+
+        // 6 — Badge "en vivo"
+        const dot = document.getElementById('live-dot');
+        dot.classList.remove('hidden');
+        dot.classList.add('flex');
+
+    } catch (e) {
+        errEl.textContent = `Error: ${e.message}`;
+        errEl.classList.remove('hidden');
+    } finally {
+        setBtnLoading(false);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Inicialización: mostrar historial al abrir la página
+═══════════════════════════════════════════════════════════ */
+loadHistory().catch(() => {
+    document.getElementById('chart-msg').innerHTML =
+        '<div class="text-center text-red-400 space-y-1"><div class="text-2xl">⚠️</div><div>Error al cargar datos de Yahoo Finance</div></div>';
+});
+</script>
+</body>
+</html>
