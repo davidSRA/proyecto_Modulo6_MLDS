@@ -123,13 +123,184 @@ aaplpredict/
 └── requirements.txt
 ```
 
-- **Variables de entorno:** (lista de variables de entorno necesarias para el despliegue)
+- **Variables de entorno:**:
+- 
+```bash
+MODELS_DIR=/ruta/a/models
+```
+
+En Railway:
+
+- PORT  
+- RAILWAY_ENVIRONMENT  
+- RAILWAY_PROJECT_ID  
+
+---
 
 
 
 ## Documentación del despliegue
 
-- **Instrucciones de instalación:** (instrucciones detalladas para instalar el modelo en la plataforma de despliegue)
-- **Instrucciones de configuración:** (instrucciones detalladas para configurar el modelo en la plataforma de despliegue)
-- **Instrucciones de uso:** (instrucciones detalladas para utilizar el modelo en la plataforma de despliegue)
-- **Instrucciones de mantenimiento:** (instrucciones detalladas para mantener el modelo en la plataforma de despliegue)
+- **Instrucciones de instalación:**
+
+## 1. Clonar el repositorio
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd aaplpredict
+```
+
+---
+
+## 2. Crear entorno virtual
+
+### Windows
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+### Linux / Mac
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+---
+
+## 3. Instalar dependencias
+
+```bash
+pip install -r requirements.txt
+```
+
+o
+
+```bash
+pip install -e .
+```
+
+---
+
+## 4. Verificación de instalación
+
+```bash
+python -c "import fastapi; print('OK')"
+```
+
+
+  
+- **Instrucciones de configuración:**
+## 1. Estructura de modelos
+
+Debe existir la carpeta:
+
+```text
+models/
+```
+
+con los modelos:
+
+- XGBoost  
+- MLP  
+- LSTM  
+
+---
+
+## 2. Variables de entorno
+
+Opcionalmente:
+
+```bash
+MODELS_DIR=/ruta/a/models
+```
+
+En Railway:
+
+- PORT  
+- RAILWAY_ENVIRONMENT  
+- RAILWAY_PROJECT_ID  
+
+---
+
+- **Instrucciones de uso:**
+
+## 1. Ejecutar localmente
+
+```bash
+uvicorn aaplpredict.api.main:app --reload
+```
+
+URL:
+
+```
+http://127.0.0.1:8000
+```
+
+## 2. Endpoints
+
+### 🔹 Health check
+
+```http
+GET /health
+```
+
+Respuesta:
+
+```json
+{
+  "status": "ok"
+}
+```
+
+---
+
+### 🔹 Histórico
+
+```http
+GET /history?dias=45
+```
+
+---
+
+### 🔹 Predicción
+
+```http
+POST /predict
+```
+
+Body:
+
+```json
+{
+  "modelo": "XGBoost"
+}
+```
+
+Modelos disponibles:
+
+- XGBoost  
+- MLP  
+- LSTM  
+
+---
+
+## 3. Respuesta ejemplo
+
+```json
+{
+  "modelo_usado": "XGBoost",
+  "precio_actual": 210.5,
+  "precio_1d": 211.2,
+  "precio_5d": 214.8,
+  "intervalo_5d_sup": 220.1,
+  "intervalo_5d_inf": 209.3,
+  "volatilidad_5d": 0.021
+}
+```
+
+
+- **Instrucciones de mantenimiento:**
+-  Endpoint /health
+-  Logs en Railway
+-  Latencia de /predict
