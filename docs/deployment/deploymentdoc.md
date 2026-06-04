@@ -286,12 +286,10 @@ Modelos disponibles:
 ```json
 {
   "modelo_usado": "XGBoost",
-  "precio_actual": 210.5,
-  "precio_1d": 211.2,
-  "precio_5d": 214.8,
-  "intervalo_5d_sup": 220.1,
-  "intervalo_5d_inf": 209.3,
-  "volatilidad_5d": 0.021
+  "precio_actual": 310.26,
+  "Prediccion_precio_1d": 310.71,
+  "prediccion_precio_5d": 311.97,
+  "volatilidad_5d": 0.014
 }
 ```
 
