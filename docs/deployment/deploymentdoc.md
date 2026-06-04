@@ -2,15 +2,38 @@
 
 ## Infraestructura
 
-- **Nombre del modelo:** (nombre que se le ha dado al modelo)
-- **Plataforma de despliegue:** (plataforma donde se va a desplegar el modelo)
-- **Requisitos técnicos:** (lista de requisitos técnicos necesarios para el despliegue, como versión de Python, bibliotecas de terceros, hardware, etc.)
-- **Requisitos de seguridad:** (lista de requisitos de seguridad necesarios para el despliegue, como autenticación, encriptación de datos, etc.)
+- **Nombre del modelo:** AAPLPredict v0.1.0 – Predicción de retornos y volatilidad de AAPL
+- **Plataforma de despliegue:** Railway Cloud Platform
+- **Requisitos técnicos:**
+- **Software**:
+- Python
+- Fast API
+- Pandas Numpy
+- Scikit-Learn
+- XGBoost
+- TensorFlow
+- Optuna
+- MLflow
+- yfinance
+- **Harduware minimo**:
+- CPU
+- Memoria Ram: 2 GB
+- Disco duro: 5 GB
+- GPU: No requerida.
+- HTTP.
+
+- **Requisitos de seguridad:**
+- Conunicacion mediante HTTPS.
+- Validación de datos mediante Pydantic
+- Restriccion de archivos de acceso mediante static,
+- No se almacenan credenciales de usuario.
+- Protecciones de solicitudes mal formadas mediante validaciones FastAPI
+
 - **Diagrama de arquitectura:** (imagen que muestra la arquitectura del sistema que se utilizará para desplegar el modelo)
 
 ## Código de despliegue
 
-- **Archivo principal:** (nombre del archivo principal que contiene el código de despliegue)
+- **Archivo principal:** aaplpredict/api/main.py
 - **Rutas de acceso a los archivos:** (lista de rutas de acceso a los archivos necesarios para el despliegue)
 - **Variables de entorno:** (lista de variables de entorno necesarias para el despliegue)
 
