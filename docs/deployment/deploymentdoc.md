@@ -43,7 +43,7 @@ B --> C[/GET history/]
 B --> D[/POST predict/]
 B --> E[/GET health/]
 
-C --> F[Yahoo Finance API]
+C --> F[API de Yahoo Finance]
 
 D --> G[Preprocesamiento]
 G --> H[Feature Engineering]
@@ -64,9 +64,9 @@ Arquitectura de despliegue:
 flowchart LR
 
 A[Desarrollador]
-B[GitHub Repository]
+B[Repositoio de GitHub ]
 C[Railway Deployment]
-D[FastAPI App]
+D[App de FastAPI]
 E[Modelos entrenados]
 
 F[XGBoost]
