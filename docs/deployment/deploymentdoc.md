@@ -301,6 +301,4 @@ Modelos disponibles:
 
 
 - **Instrucciones de mantenimiento:**
--  Endpoint /health
--  Logs en Railway
--  Latencia de /predict
+
