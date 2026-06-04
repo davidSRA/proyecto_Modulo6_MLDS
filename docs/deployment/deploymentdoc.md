@@ -117,8 +117,6 @@ aaplpredict/
 │   ├── mlp_model.pkl
 │   └── lstm_model.keras
 │
-├── tests/
-│   └── test_api.py
 │
 ├── pyproject.toml
 ├── README.md
