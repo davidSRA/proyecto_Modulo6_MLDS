@@ -99,9 +99,9 @@ D --> J
 aaplpredict/
 │
 ├── api/
-│   ├── main.py              # API FastAPI (endpoints)
-│   ├── predictor.py        # Lógica de inferencia (XGBoost, MLP, LSTM)
-│   ├── schemas.py          # Modelos Pydantic (input/output)
+│   ├── main.py             # API FastAPI
+│   ├── predictor.py        # modelos (XGBoost, MLP, LSTM)
+│   ├── schemas.py          # modelos Pydantic (input/output)
 │   └── static/
 │       └── index.html      # Interfaz web
 │
@@ -109,8 +109,8 @@ aaplpredict/
 │   └── main.py             # Limpieza y preparación de datos
 │
 ├── training/
-│   ├── feature_extraction.py  # Ingeniería de variables
-│   ├── mejores_params.csv     # Hiperparámetros óptimos
+│   ├── feature_extraction.py  # extraccion de datos
+│   ├── mejores_params.csv     # OIptimizacion de Hiperparámetros 
 │
 ├── models/
 │   ├── xgboost_model.pkl
@@ -124,7 +124,6 @@ aaplpredict/
 ├── README.md
 └── requirements.txt
 ```
-
 
 - **Variables de entorno:** (lista de variables de entorno necesarias para el despliegue)
 
