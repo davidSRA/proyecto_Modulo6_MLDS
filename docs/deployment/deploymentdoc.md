@@ -124,10 +124,6 @@ aaplpredict/
 ```
 
 - **Variables de entorno:**:
-- 
-```bash
-MODELS_DIR=/ruta/a/models
-```
 
 En Railway:
 
