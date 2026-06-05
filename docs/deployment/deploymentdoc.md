@@ -224,22 +224,6 @@ con los modelos:
 
 ---
 
-## 2. Variables de entorno
-
-Opcionalmente:
-
-```bash
-MODELS_DIR=https://github.com/davidSRA/proyecto_Modulo6_MLDS/tree/master/models
-```
-
-En Railway:
-
-- PORT  
-- RAILWAY_ENVIRONMENT  
-- RAILWAY_PROJECT_ID  
-
----
-
 - **Instrucciones de uso:**
 
 ## 1. Ejecutar localmente
@@ -256,7 +240,7 @@ http://127.0.0.1:8000
 
 ## 2. Endpoints
 
-### 🔹 Health check
+###  Health check
 
 ```http
 GET /health
@@ -272,7 +256,7 @@ Respuesta:
 
 ---
 
-### 🔹 Histórico
+###  Histórico
 
 ```http
 GET /history?dias=45
@@ -280,7 +264,7 @@ GET /history?dias=45
 
 ---
 
-### 🔹 Predicción
+###  Predicción
 
 ```http
 POST /predict
