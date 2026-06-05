@@ -6,31 +6,31 @@
 - **Plataforma de despliegue:** Railway Cloud Platform
 - **Requisitos técnicos:**
 - **Software**:
-- Python
-- Fast API
-- Pandas Numpy
-- Scikit-Learn
-- XGBoost
-- TensorFlow
-- Optuna
-- MLflow
-- yfinance
+  - Python
+  - Fast API
+  - Pandas Numpy
+  - Scikit-Learn
+  - XGBoost
+  - TensorFlow
+  - Optuna
+  - MLflow
+  - yfinance
 - **Harduware minimo**:
-- CPU
-- Memoria Ram: 2 GB
-- Disco duro: 5 GB
-- GPU: No requerida.
-- HTTP.
-- Dependencias externas
-- Acceso a Yahoo Finance para descarga de información financiera.
-- Conectividad a Internet para la actualización de datos.
+  - CPU
+  - Memoria Ram: 2 GB
+  - Disco duro: 5 GB
+  - GPU: No requerida.
+  - HTTP.
+  - Dependencias externas
+  - Acceso a Yahoo Finance para descarga de información financiera.
+  - Conectividad a Internet para la actualización de datos.
 
 - **Requisitos de seguridad:**
-- Conunicacion mediante HTTPS.
-- Validación de datos mediante Pydantic
-- Restriccion de archivos de acceso mediante static,
-- No se almacenan credenciales de usuario.
-- Protecciones de solicitudes mal formadas mediante validaciones FastAPI
+  - Conunicacion mediante HTTPS.
+  - Validación de datos mediante Pydantic
+  - Restriccion de archivos de acceso mediante static,
+  - No se almacenan credenciales de usuario.
+  - Protecciones de solicitudes mal formadas mediante validaciones FastAPI
 
 - **Diagrama de arquitectura:**
   
