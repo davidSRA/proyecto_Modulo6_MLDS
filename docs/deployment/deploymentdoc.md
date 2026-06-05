@@ -175,22 +175,6 @@ ID del entorno
 
 ID del servicio
 ```
-
----
-
-
-
-## Documentación del despliegue
-
-- **Instrucciones de instalación:**
-
-## 1. Clonar el repositorio
-
-```bash
-git clone <https://github.com/davidSRA/proyecto_Modulo6_MLDS/tree/master/src/aaplpredict>
-cd aaplpredict
-```
-
 ---
 
 ## 2. Crear entorno virtual
