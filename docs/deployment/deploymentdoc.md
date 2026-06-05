@@ -171,28 +171,6 @@ ID del entorno
 
 ---
 
-## RAILWAY_SERVICE_ID
-
-ID del servicio
-```
----
-
-## 2. Crear entorno virtual
-
-### Windows
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-### Linux / Mac
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-
----
-
 ## 3. Instalar dependencias
 
 ```bash
