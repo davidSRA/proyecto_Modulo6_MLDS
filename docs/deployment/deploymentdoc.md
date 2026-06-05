@@ -198,13 +198,6 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-
-o
-
-```bash
-pip install -e .
-```
-
 ---
 
 ## 4. Verificación de instalación
@@ -213,8 +206,7 @@ pip install -e .
 python -c "import fastapi; print('OK')"
 ```
 
-
-  
+ 
 - **Instrucciones de configuración:**
 ## 1. Estructura de modelos
 
