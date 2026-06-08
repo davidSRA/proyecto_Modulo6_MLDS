@@ -15,7 +15,7 @@ Este informe describe los resultados del proyecto de predicción de la acción d
   - **XGBoost** demostró la mayor capacidad de generalización y el mejor desempeño global ($MSE_{XGBoost} = 0.001690$), siendo el único capaz de capturar la estructura de los datos con un coeficiente de determinación ($R^2$) positivo.
   - La red neuronal **LSTM** ($MSE_{LSTM} = 0.001506$) y el perceptrón multicapa (**MLP**) mostraron desempeños métricos cercanos, pero exhibieron limitaciones ($R^2$ negativo) para explicar de forma completa la alta variabilidad y no estacionariedad de la serie.
 - **Relevancia para el negocio:** Se entrega una herramienta de análisis algorítmico que sirve como *benchmark* frente al análisis técnico tradicional, reduciendo el riesgo en la toma de decisiones para inversionistas y cumpliendo los estrictos criterios de rigor exigidos.
-- 
+
 ## Lecciones aprendidas
 
 - **Desafíos con Datos Financieros:** La naturaleza altamente volátil y ruidosa del mercado (comportamientos de ruido blanco) representa un reto. Modelar retornos futuros, en lugar de predecir el precio directo, confirmó ser el enfoque matemáticamente más sólido.
