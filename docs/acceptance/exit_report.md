@@ -11,9 +11,10 @@ Este informe describe los resultados del proyecto de predicción de la acción d
   - Se configuró exitosamente la validación cruzada temporal (TimeSeriesSplit) para prevenir el *data leakage*, garantizando que el modelo respete la secuencia cronológica de los datos bursátiles.
   - Se desplegó la arquitectura completa mediante FastAPI, habilitando el consumo del modelo en producción con Railway.
 
-- Evaluación del modelo final y comparación con el modelo base.
-- Descripción de los resultados y su relevancia para el negocio.
-
+- **Evaluación del Modelo Final:** - Se construyó una línea base comparando tres arquitecturas: MLP, redes recurrentes LSTM y XGBoost. 
+  - **XGBoost** demostró la mayor capacidad de generalización y el mejor desempeño global ($MSE_{XGBoost} = 0.001690$), siendo el único capaz de capturar la estructura de los datos con un coeficiente de determinación ($R^2$) positivo.
+  - La red neuronal **LSTM** ($MSE_{LSTM} = 0.001506$) y el perceptrón multicapa (**MLP**) mostraron desempeños métricos cercanos, pero exhibieron limitaciones ($R^2$ negativo) para explicar de forma completa la alta variabilidad y no estacionariedad de la serie.
+- **Relevancia para el negocio:** Se entrega una herramienta de análisis algorítmico que sirve como *benchmark* frente al análisis técnico tradicional, reduciendo el riesgo en la toma de decisiones para inversionistas y cumpliendo los estrictos criterios de rigor exigidos.
 ## Lecciones aprendidas
 
 - Identificación de los principales desafíos y obstáculos encontrados durante el proyecto.
