@@ -29,8 +29,9 @@ Este informe describe los resultados del proyecto de predicción de la acción d
 
 ## Conclusiones
 
-- Resumen de los resultados y principales logros del proyecto.
-- Conclusiones finales y recomendaciones para futuros proyectos.
+- El modelo XGBoost se consolidó como la herramienta más eficiente para esta tarea específica, equilibrando la precisión con la capacidad de generalizar datos futuros invisibles.
+- Se cumplió a cabalidad con la estandarización TDSP y se superaron los retos del despliegue en la nube, entregando un producto de software funcional con métricas confiables y reproducibles.
+- Los modelos dejan una puerta abierta para ser re-entrenados con datasets de mayor volumen e incluir información de noticias financieras para eliminar el ruido y/o utilizarse en la predicción.
 
 ## Agradecimientos
 
