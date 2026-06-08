@@ -21,6 +21,10 @@ Este informe describe los resultados del proyecto de predicción de la acción d
 - Lecciones aprendidas en relación al manejo de los datos, el modelamiento y la implementación del modelo.
 - Recomendaciones para futuros proyectos de machine learning.
 
+- **Desafíos con Datos Financieros:** La naturaleza altamente volátil y ruidosa del mercado (comportamientos de ruido blanco) representa un reto. Modelar retornos futuros, en lugar de predecir el precio directo, confirmó ser el enfoque matemáticamente más sólido.
+- **Optimización y Modelamiento:** Las arquitecturas de Deep Learning (LSTM y MLP) requirieron procesos de optimización exhaustivos a través de *Optuna*. Se evidenció que en entornos de datos tabulares financieros con alta varianza, los modelos basados en árboles (XGBoost) pueden converger más rápido hacia patrones generales sin sobreajustarse al ruido del mercado.
+- **Ingeniería de Características:** La adición de variables derivadas (Target a 1d y 5d, y volatilidad a 5d) y el mantenimiento limpio de la matriz OHLCV (Open, High, Low, Close, Volume) fueron determinantes para encontrar señales válidas en la fase de entrenamiento.
+
 ## Impacto del proyecto
 
 - **Impacto en la Industria:** El proyecto establece un puente directo entre la academia y la industria *fintech*, proveyendo a inversionistas minoristas y experimentados de un modelo explicativo y de baja latencia para la consulta de expectativas de retorno de AAPL.
