@@ -23,8 +23,9 @@ Este informe describe los resultados del proyecto de predicción de la acción d
 
 ## Impacto del proyecto
 
-- Descripción del impacto del modelo en el negocio o en la industria.
-- Identificación de las áreas de mejora y oportunidades de desarrollo futuras.
+- **Impacto en la Industria:** El proyecto establece un puente directo entre la academia y la industria *fintech*, proveyendo a inversionistas minoristas y experimentados de un modelo explicativo y de baja latencia para la consulta de expectativas de retorno de AAPL.
+- **Oportunidades Futuras:** - La infraestructura actual fue diseñada modularmente, lo que permite escalar la predicción a otros activos financieros y *tickers* del mercado.
+  - Se puede explorar la integración de datos alternativos (como análisis de sentimiento en noticias o redes sociales) que complementen el movimiento de volumen y precio.
 
 ## Conclusiones
 
