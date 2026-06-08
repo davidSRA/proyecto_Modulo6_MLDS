@@ -15,11 +15,8 @@ Este informe describe los resultados del proyecto de predicción de la acción d
   - **XGBoost** demostró la mayor capacidad de generalización y el mejor desempeño global ($MSE_{XGBoost} = 0.001690$), siendo el único capaz de capturar la estructura de los datos con un coeficiente de determinación ($R^2$) positivo.
   - La red neuronal **LSTM** ($MSE_{LSTM} = 0.001506$) y el perceptrón multicapa (**MLP**) mostraron desempeños métricos cercanos, pero exhibieron limitaciones ($R^2$ negativo) para explicar de forma completa la alta variabilidad y no estacionariedad de la serie.
 - **Relevancia para el negocio:** Se entrega una herramienta de análisis algorítmico que sirve como *benchmark* frente al análisis técnico tradicional, reduciendo el riesgo en la toma de decisiones para inversionistas y cumpliendo los estrictos criterios de rigor exigidos.
+- 
 ## Lecciones aprendidas
-
-- Identificación de los principales desafíos y obstáculos encontrados durante el proyecto.
-- Lecciones aprendidas en relación al manejo de los datos, el modelamiento y la implementación del modelo.
-- Recomendaciones para futuros proyectos de machine learning.
 
 - **Desafíos con Datos Financieros:** La naturaleza altamente volátil y ruidosa del mercado (comportamientos de ruido blanco) representa un reto. Modelar retornos futuros, en lugar de predecir el precio directo, confirmó ser el enfoque matemáticamente más sólido.
 - **Optimización y Modelamiento:** Las arquitecturas de Deep Learning (LSTM y MLP) requirieron procesos de optimización exhaustivos a través de *Optuna*. Se evidenció que en entornos de datos tabulares financieros con alta varianza, los modelos basados en árboles (XGBoost) pueden converger más rápido hacia patrones generales sin sobreajustarse al ruido del mercado.
@@ -39,5 +36,5 @@ Este informe describe los resultados del proyecto de predicción de la acción d
 
 ## Agradecimientos
 
-- Agradecimientos al equipo de trabajo y a los colaboradores que hicieron posible este proyecto.
-- Agradecimientos especiales a los patrocinadores y financiadores del proyecto.
+- Especial reconocimiento a la labor conjunta del equipo técnico: a Santiago Rodriguez por la dirección estratégica del proyecto, a Brayan Arturo Camargo por el diseño y validación de los modelos como Científico de Datos, y Oscar alfonso en la estructuración de la la Ingeniería de Datos.
+- Agradecimiento a los evaluadores de la UNAL por la retroalimentación y el estándar de rigor académico exigido a lo largo del proceso.
