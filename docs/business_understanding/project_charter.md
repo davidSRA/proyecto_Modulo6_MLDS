@@ -3,6 +3,7 @@
 ## Nombre del Proyecto
 
 Predicción del precio de la acción de Apple Inc. (AAPL) mediante aprendizaje profundo
+Prueba DSR
 
 ## Objetivo del Proyecto
 
